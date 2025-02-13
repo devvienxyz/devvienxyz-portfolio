@@ -1,0 +1,28 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --primary-color: #ecfccb;
+    --secondary-color: #A3703A;
+    --highlight-color: #9842f5;
+  }
+}
+
+@layer utilities {
+  .text-glow-secondary {
+    text-shadow: 2px 2px 0px rgba(243, 235, 247, 0.658);
+  }
+
+  .text-highlight {
+    color: var(--highlight-color);
+  }
+}
+
+
+body {
+  font-family: 'VT323', cursive, sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
