@@ -7,6 +7,7 @@
 
 ```bash
 npm install -g pnpm  # [optional] Skip if pnpm is already installed.
+pnpm approve-builds
 pnpm install
 ```
 
@@ -26,4 +27,7 @@ pnpm add -D <package_name>
 
 # To uninstall a package:
 pnpm remove <package_name>
+
+#
+pnpm dlx tailwindcss init -p
 ```
