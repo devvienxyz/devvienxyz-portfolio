@@ -9,8 +9,7 @@
     "ngrok-dyn": "ngrok http 8000",
     "test": "jest --watchAll"
   },
-  "devDependencies": {
-  },
+  "devDependencies": {},
   "dependencies": {
     "@react-three/drei": "^9.121.4",
     "@react-three/fiber": "^8.17.14",
