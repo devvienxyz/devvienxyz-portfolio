@@ -10,4 +10,4 @@ build/
 *.tmp
 *.swp
 
-TODO.md
+TODO*.md

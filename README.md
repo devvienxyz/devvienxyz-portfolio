@@ -1,5 +1,8 @@
 # [devvienxyz-portfolio](https://github.com/devvienxyz/devvienxyz-portfolio)
 
-```
-npm ci
+## Setup
+
+```bash
+npm install -g pnpm  # [optional] Skip if pnpm is already installed.
+pnpm install
 ```

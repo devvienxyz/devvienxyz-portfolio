@@ -10,7 +10,8 @@
   },
   "devDependencies": {
     "@biomejs/biome": "1.9.4",
-    "@vitejs/plugin-react-swc": "^3.8.0"
+    "@vitejs/plugin-react-swc": "^3.8.0",
+    "turbo": "^2.5.0"
   },
   "dependencies": {
     "@react-three/drei": "^9.121.4",
