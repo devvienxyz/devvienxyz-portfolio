@@ -36,7 +36,7 @@ export default defineConfig(({ mode }) => {
 					],
 				},
 			}),
-			tailwindcss(),
+			// tailwindcss(),
 		],
 		resolve: {
 			alias: {
