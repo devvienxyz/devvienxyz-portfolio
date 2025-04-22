@@ -40,11 +40,10 @@ export default defineConfig(({ mode }) => {
 		],
 		resolve: {
 			alias: {
-				"@": path.resolve(__dirname, "apps"),
+				"@controller": path.resolve(__dirname, "apps/controller"),
+				"@pixel": path.resolve(__dirname, "apps/pixel-adventure"),
 				"@assets": path.resolve(__dirname, "assets"),
 				"@packages": path.resolve(__dirname, "packages"),
-				"@controller": path.resolve(__dirname, "apps/controller"),
-				"@pixel": path.resolve(__dirname, "apps/pixeladventure"),
 			},
 		},
 		build: {
