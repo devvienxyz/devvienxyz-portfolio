@@ -1,13 +1,15 @@
 import path from "path";
 import { fileURLToPath } from "url";
-import tailwindcss from "@tailwindcss/vite";
+// import tailwindcss from "@tailwindcss/vite";
 import react from "@vitejs/plugin-react-swc";
 import { defineConfig, loadEnv } from "vite";
 import { VitePWA } from "vite-plugin-pwa";
 
-const __dirname = path.dirname(fileURLToPath(import.meta.url));
+import { defineConfig, mergeConfig } from 'vite'
+import baseConfig from '@packages/config/vite.base'
 
-export default defineConfig(({ mode }) => {
+export default mergeConfig(baseConfig, defineConfig(({ mode }) => {
+  const __dirname = path.dirname(fileURLToPath(import.meta.url));
 	const env = loadEnv(mode, process.cwd(), "");
 
 	return {
@@ -38,14 +40,6 @@ export default defineConfig(({ mode }) => {
 			}),
 			// tailwindcss(),
 		],
-		resolve: {
-			alias: {
-				"@controller": path.resolve(__dirname, "apps/controller"),
-				"@pixel": path.resolve(__dirname, "apps/pixel-adventure"),
-				"@assets": path.resolve(__dirname, "assets"),
-				"@packages": path.resolve(__dirname, "packages"),
-			},
-		},
 		build: {
 			sourcemap: false, // Disable source maps in production
 			outDir: "dist",
@@ -68,4 +62,4 @@ export default defineConfig(({ mode }) => {
 			},
 		},
 	};
-});
+}));
