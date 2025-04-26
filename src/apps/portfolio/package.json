@@ -1,5 +1,8 @@
 {
   "name": "portfolio",
+  "type": "module",
+  "version": "1.0.0",
+  "private": true,
   "scripts": {
     "dev": "vite --port 8000",
     "build": "vite build",
@@ -10,6 +13,8 @@
     "test": "jest --watchAll"
   },
   "devDependencies": {},
-  "dependencies": {},
+  "dependencies": {
+    "@packages/config": "workspace:*"
+  },
   "license": "MIT"
 }

@@ -1,0 +1,6 @@
+{
+  "name": "@packages/config",
+  "version": "1.0.0",
+  "main": "vite.base.js",
+  "type": "module"
+}
