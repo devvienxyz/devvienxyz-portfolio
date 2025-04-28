@@ -13,18 +13,8 @@ export const Sun = () => {
 			</mesh>
 
 			{/* Sunlight */}
-			<pointLight
-				color={0xffcc00}
-				intensity={200}
-				distance={100}
-				position={[0, 15, -5]}
-			/>
-			<pointLight
-				color={0xf7f9ff}
-				intensity={200}
-				distance={100}
-				position={[4, 8, -5]}
-			/>
+			<pointLight color={0xffcc00} intensity={200} distance={100} position={[0, 15, -5]} />
+			<pointLight color={0xf7f9ff} intensity={200} distance={100} position={[4, 8, -5]} />
 		</>
 	);
 };

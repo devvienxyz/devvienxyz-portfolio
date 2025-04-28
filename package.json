@@ -3,6 +3,8 @@
 	"version": "1.0.0",
 	"private": true,
 	"scripts": {
+		"format-check": "biome format --ignore '**/node_modules/**'",
+		"format-and-fix": "biome format --ignore '**/node_modules/**' --fix",
 		"vanilla": "live-server src --port=8000",
 		"ngrok-static": "ngrok http --url=\"$NGROK_STATIC_URL\" 8000",
 		"ngrok-dyn": "ngrok http 8000",

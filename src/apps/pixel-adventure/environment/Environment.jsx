@@ -7,14 +7,14 @@ import { Sun } from "./Env-Elements";
 
 // Shader for background gradient
 const DUAL_GRADIENT = {
-  vertexShader: `
+	vertexShader: `
     varying ) {
       vec4 worldPosition = modelMatrix * vec4(position, 1.0);
       vWorldPosition = worldPosition.xyz;
       gl_Position = projectionMatrix * viewMatrix * worldPosition;
     }
   `,
-  fragmentShader: `
+	fragmentShader: `
     varying vec3 vWorldPosition;
     void main() {
       vec3 viewDir = normalize(vWorldPosition);
@@ -29,69 +29,69 @@ const DUAL_GRADIENT = {
 
 // Background component using ShaderMaterial
 const DynamicBackground = () => {
-  const materialRef = useRef();
+	const materialRef = useRef();
 
-  return (
-    <mesh scale={[50, 50, 50]}>
-      <sphereGeometry args={[1, 32, 32]} />
-      <shaderMaterial
-        ref={materialRef}
-        vertexShader={DUAL_GRADIENT.vertexShader}
-        fragmentShader={DUAL_GRADIENT.fragmentShader}
-        side={THREE.BackSide}
-      />
-    </mesh>
-  );
+	return (
+		<mesh scale={[50, 50, 50]}>
+			<sphereGeometry args={[1, 32, 32]} />
+			<shaderMaterial
+				ref={materialRef}
+				vertexShader={DUAL_GRADIENT.vertexShader}
+				fragmentShader={DUAL_GRADIENT.fragmentShader}
+				side={THREE.BackSide}
+			/>
+		</mesh>
+	);
 };
 
 export default function Environment() {
-  const { camera, scene } = useThree();
-  const controlsRef = useRef();
-  const clockRef = useRef(new THREE.Clock());
+	const { camera, scene } = useThree();
+	const controlsRef = useRef();
+	const clockRef = useRef(new THREE.Clock());
 
-  useEffect(() => {
-    camera.position.set(-3, 2, 5);
-    camera.lookAt(0, 0, 0);
-  }, [camera]);
+	useEffect(() => {
+		camera.position.set(-3, 2, 5);
+		camera.lookAt(0, 0, 0);
+	}, [camera]);
 
-  useFrame(() => {
-    if (controlsRef.current) {
-      controlsRef.current.update();
-    }
-  });
+	useFrame(() => {
+		if (controlsRef.current) {
+			controlsRef.current.update();
+		}
+	});
 
-  return (
-    <>
-      {/* Lights */}
-      <directionalLight position={[2, 2, 5]} intensity={1} />
-      <ambientLight intensity={1.5} />
+	return (
+		<>
+			{/* Lights */}
+			<directionalLight position={[2, 2, 5]} intensity={1} />
+			<ambientLight intensity={1.5} />
 
-      {/* Background */}
-      <DynamicBackground />
+			{/* Background */}
+			<DynamicBackground />
 
-      {/* Sun Component */}
-      <Sun scene={scene} />
+			{/* Sun Component */}
+			<Sun scene={scene} />
 
-      {/* Orbit Controls */}
-      <OrbitControls
-        ref={controlsRef}
-        enableDamping
-        enablePan
-        screenSpacePanning={false}
-        keyPanSpeed={100}
-        maxDistance={10}
-        minDistance={5}
-        maxPolarAngle={Math.PI / 2}
-      />
+			{/* Orbit Controls */}
+			<OrbitControls
+				ref={controlsRef}
+				enableDamping
+				enablePan
+				screenSpacePanning={false}
+				keyPanSpeed={100}
+				maxDistance={10}
+				minDistance={5}
+				maxPolarAngle={Math.PI / 2}
+			/>
 
-      {/* Terrain and objects */}
-      <TerrainMap environment={scene} />
+			{/* Terrain and objects */}
+			<TerrainMap environment={scene} />
 
-      {/* Signs */}
-      <Sign text="About" position={[0, 7, 1.5]} rotation={Math.PI / 2} />
-      <Sign text="Projects" position={[0, 6, -1.5]} rotation={-Math.PI / 2} />
-      <Sign text="Experiences" position={[-1.5, 5, 0]} rotation={0} isActive />
-      <Sign text="Contact" position={[1.5, 4, 0]} rotation={Math.PI} />
-    </>
-  );
-};
+			{/* Signs */}
+			<Sign text="About" position={[0, 7, 1.5]} rotation={Math.PI / 2} />
+			<Sign text="Projects" position={[0, 6, -1.5]} rotation={-Math.PI / 2} />
+			<Sign text="Experiences" position={[-1.5, 5, 0]} rotation={0} isActive />
+			<Sign text="Contact" position={[1.5, 4, 0]} rotation={Math.PI} />
+		</>
+	);
+}
