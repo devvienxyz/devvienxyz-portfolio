@@ -1,6 +1,7 @@
 import path from "path";
 import { fileURLToPath } from "url";
 import tailwindcss from "@tailwindcss/vite";
+import react from "@vitejs/plugin-react-swc";
 import { defineConfig, loadEnv } from "vite";
 import { VitePWA } from "vite-plugin-pwa";
 
@@ -12,7 +13,7 @@ export const createAppConfig = ({ appName, alias = {}, pwaManifest = {} }) =>
 
 		return {
 			plugins: [
-				tailwindcss(),
+				react(),
 				VitePWA({
 					registerType: "autoUpdate",
 					manifest: {
@@ -25,6 +26,7 @@ export const createAppConfig = ({ appName, alias = {}, pwaManifest = {} }) =>
 						icons: pwaManifest.icons || [],
 					},
 				}),
+				tailwindcss(),
 			],
 			resolve: {
 				alias: {

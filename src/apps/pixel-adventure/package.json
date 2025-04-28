@@ -12,11 +12,10 @@
 		"ngrok-dyn": "ngrok http 8000",
 		"test": "jest --watchAll"
 	},
-	"devDependencies": {},
 	"dependencies": {
+		"@react-three/drei": "^10.0.7",
+		"@react-three/fiber": "^9.1.2",
 		"@shared": "workspace:*",
-		"@react-three/drei": "^9.121.4",
-		"@react-three/fiber": "^8.17.14",
 		"three": "^0.173.0"
 	},
 	"license": "MIT"
