@@ -31,18 +31,10 @@ export const createAppConfig = ({ appName, alias = {}, pwaManifest = {} }) =>
 			resolve: {
 				alias: {
 					react: path.resolve(__dirname, "../../../node_modules/react"),
-					"react-dom": path.resolve(
-						__dirname,
-						"../../../node_modules/react-dom",
-					),
+					"react-dom": path.resolve(__dirname, "../../../node_modules/react-dom"),
 					"@portfolio": path.resolve(__dirname, "../../../src/apps/portfolio"),
-					"@pixel": path.resolve(
-						__dirname,
-						"../../../src/apps/pixel-adventure",
-					),
-					"@assets": path.resolve(__dirname, "../../../src/assets"),
-					"@shared": path.resolve(__dirname, "../../src/shared"),
-
+					"@pixel": path.resolve(__dirname, "../../../src/apps/pixel-adventure"),
+					"@shared": path.resolve(__dirname, "../../../src/shared"),
 					...alias,
 				},
 				dedupe: ["react", "react-dom"],
@@ -55,14 +47,6 @@ export const createAppConfig = ({ appName, alias = {}, pwaManifest = {} }) =>
 						manualChunks(id) {
 							if (id.includes("node_modules")) return "vendor";
 						},
-					},
-				},
-			},
-			server: {
-				proxy: {
-					"/api": {
-						target: env.VITE_API_BASE_URL || "http://backend:8000",
-						changeOrigin: true,
 					},
 				},
 			},
