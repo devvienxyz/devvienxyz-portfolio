@@ -44,7 +44,7 @@ const DynamicBackground = () => {
   );
 };
 
-const Environment = () => {
+export default function Environment() {
   const { camera, scene } = useThree();
   const controlsRef = useRef();
   const clockRef = useRef(new THREE.Clock());
@@ -95,5 +95,3 @@ const Environment = () => {
     </>
   );
 };
-
-export default Environment;

@@ -24,6 +24,7 @@ pnpm add <package_name>
 # To add a package to dev dependencies, do:
 pnpm add -D <package_name>
 # eg: pnpm add -D globals -w
+# eg: pnpm add -D gh-pages -w
 
 # To uninstall a package:
 pnpm remove <package_name>

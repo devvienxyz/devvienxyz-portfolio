@@ -1,22 +1,23 @@
 {
-  "name": "pixel-adventure",
-  "type": "module",
-  "version": "1.0.0",
-  "private": true,
-  "scripts": {
-    "dev": "vite --port 8000",
-    "build": "vite build",
-    "preview": "vite preview",
-    "vanilla": "live-server src --port=8000",
-    "ngrok-static": "ngrok http --url=\"$NGROK_STATIC_URL\" 8000",
-    "ngrok-dyn": "ngrok http 8000",
-    "test": "jest --watchAll"
-  },
-  "devDependencies": {},
-  "dependencies": {
-    "@react-three/drei": "^9.121.4",
-    "@react-three/fiber": "^8.17.14",
-    "three": "^0.173.0"
-  },
-  "license": "MIT"
+	"name": "@pixel",
+	"type": "module",
+	"version": "1.0.0",
+	"private": true,
+	"scripts": {
+		"dev": "vite --port 8000",
+		"build": "vite build",
+		"preview": "vite preview",
+		"vanilla": "live-server src --port=8000",
+		"ngrok-static": "ngrok http --url=\"$NGROK_STATIC_URL\" 8000",
+		"ngrok-dyn": "ngrok http 8000",
+		"test": "jest --watchAll"
+	},
+	"devDependencies": {},
+	"dependencies": {
+		"@shared": "workspace:*",
+		"@react-three/drei": "^9.121.4",
+		"@react-three/fiber": "^8.17.14",
+		"three": "^0.173.0"
+	},
+	"license": "MIT"
 }

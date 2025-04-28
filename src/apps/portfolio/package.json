@@ -1,20 +1,21 @@
 {
-  "name": "portfolio",
-  "type": "module",
-  "version": "1.0.0",
-  "private": true,
-  "scripts": {
-    "dev": "vite --port 8000",
-    "build": "vite build",
-    "preview": "vite preview",
-    "vanilla": "live-server src --port=8000",
-    "ngrok-static": "ngrok http --url=\"$NGROK_STATIC_URL\" 8000",
-    "ngrok-dyn": "ngrok http 8000",
-    "test": "jest --watchAll"
-  },
-  "devDependencies": {},
-  "dependencies": {
-    "@packages/config": "workspace:*"
-  },
-  "license": "MIT"
+	"name": "@portfolio",
+	"type": "module",
+	"version": "1.0.0",
+	"private": true,
+	"scripts": {
+		"dev": "vite --port 8000",
+		"build": "vite build",
+		"preview": "vite preview",
+		"vanilla": "live-server src --port=8000",
+		"ngrok-static": "ngrok http --url=\"$NGROK_STATIC_URL\" 8000",
+		"ngrok-dyn": "ngrok http 8000",
+		"test": "jest --watchAll"
+	},
+	"devDependencies": {},
+	"dependencies": {
+		"@shared": "workspace:*",
+		"@pixel": "workspace:*"
+	},
+	"license": "MIT"
 }

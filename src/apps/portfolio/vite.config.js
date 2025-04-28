@@ -1,12 +1,8 @@
-import { createAppConfig } from "@packages/config/vite.factory.js";
-import react from "@vitejs/plugin-react-swc";
+import { createAppConfig } from "@shared/config/vite.factory.js";
 
 export default createAppConfig({
-	appName: "devvienxyz-portfolio",
-	alias: {
-		"@portfolio": "/src/apps/portfolio",
-		"@assets": "/src/assets",
-	},
+	appName: "portfolio",
+	alias: {},
 	pwaManifest: {
 		icons: [
 			{
@@ -21,7 +17,4 @@ export default createAppConfig({
 			},
 		],
 	},
-}).then((config) => ({
-	...config,
-	plugins: [react(), ...config.plugins],
-}));
+});

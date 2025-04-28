@@ -1,11 +1,10 @@
-import { Environment } from "@pixel";
-import { Canvas } from "@react-three/fiber";
+import { PixelApp } from "@pixel";
 
 const App = () => {
   return (
-    <Canvas camera={{ fov: 50, near: 0.1, far: 1000 }}>
-      <Environment />
-    </Canvas>
+    <div className="w-full h-screen">
+      <PixelApp />
+    </div>
   );
 };
 
