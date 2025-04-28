@@ -1,6 +1,6 @@
 import { Text } from "@react-three/drei";
 import { useLoader } from "@react-three/fiber";
-import React, { userRef, useEffect } from "react";
+import React, { useRef, useEffect } from "react";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
 
 export const Sign = ({ text, position, rotation, areaName, isActive }) => {
@@ -23,7 +23,7 @@ export const Sign = ({ text, position, rotation, areaName, isActive }) => {
 };
 
 const TerrainObject = ({ name, position, scale = 1, rotationY = 0 }) => {
-	const model = useLoader(GLTFLoader, `/assets/pixel-map/models/${name}.glb`);
+	const model = useLoader(GLTFLoader, `assets/kenney/pixel-map/models/${name}.glb`);
 
 	useEffect(() => {
 		model.scene.scale.set(scale, scale, scale);
@@ -41,14 +41,12 @@ const TERRAIN = [
 	{ name: "water", position: [0.5, 0, 0.9] },
 ];
 
-const MapLoader = () => {
+export default function MapLoader() {
 	return (
 		<>
 			{TERRAIN.map((props, index) => (
-				<TerrainObject key={index} {...props} />
+				<TerrainObject key={`${props.name}-${index}`} {...props} />
 			))}
 		</>
 	);
-};
-
-export default MapLoader;
+}

@@ -1,9 +1,6 @@
-import baseConfig from "@shared/config/vite.base";
-import { mergeConfig } from "vite";
+import { createAppConfig } from "@shared/config/vite.factory.js";
 
-export default mergeConfig(baseConfig, {
-	root: __dirname,
-	build: {
-		outDir: "dist",
-	},
+export default createAppConfig({
+	appName: "pixel",
+	alias: {},
 });
