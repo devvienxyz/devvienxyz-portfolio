@@ -37,6 +37,10 @@ pnpm list <packages>
 # e.g: react react-dom
 ```
 
+## Pre-commit
+
+If urgent, this can be overriden by running: `git commit --no-verify`.
+
 ## Support My Work
 
 If you find my projects helpful, consider supporting me:
