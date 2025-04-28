@@ -36,3 +36,11 @@ pnpm dlx tailwindcss init -p
 pnpm list <packages>
 # e.g: react react-dom
 ```
+
+## Support My Work
+
+If you find my projects helpful, consider supporting me:
+
+<a href="https://www.buymeacoffee.com/devvienxyz" target="_blank">
+  <img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="Buy Me A Coffee" width="200" />
+</a>
