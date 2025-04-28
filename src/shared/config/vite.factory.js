@@ -12,6 +12,7 @@ export const createAppConfig = ({ appName, alias = {}, pwaManifest = {} }) =>
 		const env = loadEnv(mode, process.cwd(), "");
 
 		return {
+			publicDir: path.resolve(__dirname, "../../../public"),
 			plugins: [
 				react(),
 				VitePWA({
