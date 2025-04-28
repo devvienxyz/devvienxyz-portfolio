@@ -31,4 +31,8 @@ pnpm remove <package_name>
 
 #
 pnpm dlx tailwindcss init -p
+
+# verify package versions
+pnpm list <packages>
+# e.g: react react-dom
 ```

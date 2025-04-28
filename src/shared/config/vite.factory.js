@@ -28,8 +28,11 @@ export const createAppConfig = ({ appName, alias = {}, pwaManifest = {} }) =>
 			],
 			resolve: {
 				alias: {
-					// "@": path.resolve(__dirname, "../../../"),
-					"@": "/src",
+					react: path.resolve(__dirname, "../../../node_modules/react"),
+					"react-dom": path.resolve(
+						__dirname,
+						"../../../node_modules/react-dom",
+					),
 					"@portfolio": path.resolve(__dirname, "../../../src/apps/portfolio"),
 					"@pixel": path.resolve(
 						__dirname,
@@ -37,6 +40,7 @@ export const createAppConfig = ({ appName, alias = {}, pwaManifest = {} }) =>
 					),
 					"@assets": path.resolve(__dirname, "../../../src/assets"),
 					"@shared": path.resolve(__dirname, "../../src/shared"),
+
 					...alias,
 				},
 				dedupe: ["react", "react-dom"],

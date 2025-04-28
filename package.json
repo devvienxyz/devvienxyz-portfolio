@@ -7,6 +7,9 @@
 		"ngrok-static": "ngrok http --url=\"$NGROK_STATIC_URL\" 8000",
 		"ngrok-dyn": "ngrok http 8000",
 		"test": "jest --watchAll",
+		"dev:portfolio": "pnpm --filter @portfolio dev",
+		"dev:pixel": "pnpm --filter @pixel dev",
+		"build:all": "pnpm -r build",
 		"gh-predeploy": "pnpm run build",
 		"gh-deploy": "gh-pages -d build"
 	},
