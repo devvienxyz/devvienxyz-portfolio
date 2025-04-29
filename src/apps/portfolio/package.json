@@ -6,7 +6,9 @@
 	"scripts": {
 		"dev": "vite --port 8000",
 		"build": "vite build",
-		"preview": "vite preview"
+		"preview": "vite preview",
+		"gh-predeploy": "pnpm run build",
+		"gh-deploy": "gh-pages -d build"
 	},
 	"devDependencies": {},
 	"dependencies": {

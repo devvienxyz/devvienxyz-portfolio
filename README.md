@@ -6,6 +6,7 @@ This project is actively being developed.
 ## Setup
 
 ```bash
+nvm use
 npm install -g pnpm  # [optional] Skip if pnpm is already installed.
 pnpm approve-builds
 pnpm install
