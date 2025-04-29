@@ -3,7 +3,7 @@ import { useFrame, useThree } from "@react-three/fiber";
 import React, { useRef, useEffect } from "react";
 import * as THREE from "three";
 import { StreetSign } from "../Street";
-import TerrainMap from "./Terrain";
+import Terrain from "./Terrain";
 
 // Shader for background gradient
 const DUAL_GRADIENT = {
@@ -87,10 +87,10 @@ export default function Environment() {
 			/>
 
 			{/* Terrain and objects */}
-			<TerrainMap environment={scene} />
+			<Terrain scene={scene} />
 
 			{/* Street Objects */}
-			<StreetSign />
+			{/* <StreetSign /> */}
 		</>
 	);
 }

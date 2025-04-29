@@ -1,18 +1,7 @@
-import { useLoader } from "@react-three/fiber";
-import React, { useRef, useEffect } from "react";
+import { useEffect, useRef } from "react";
+import * as THREE from "three";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
-
-export function TerrainObject({ name, position, scale = 1, rotationY = 0 }) {
-	const model = useLoader(GLTFLoader, `assets/kenney/pixel-map/models/${name}.glb`);
-
-	useEffect(() => {
-		model.scene.scale.set(scale, scale, scale);
-		model.scene.position.set(...position);
-		model.scene.rotation.y = rotationY;
-	}, [model, position, scale, rotationY]);
-
-	return <primitive object={model.scene} />;
-}
+import deepFreeze from "../../../../shared/utils/deep-freeze";
 
 const createShipOnWater = (x, z, large = false, rotationY = 0) => [
 	{ name: large ? "unit-ship-large" : "unit-ship", position: [x, 0.1, z], rotationY },
@@ -33,7 +22,7 @@ const createBldgWallsOnDirt = (x, z) => [
 	{ name: "dirt", position: [x, 0, z] },
 ];
 
-const TERRAIN = [
+const TerrainObjects = deepFreeze([
 	...createTreeCluster(-3, -5),
 	...createShipOnWater(-3, 0, true, -15),
 	...createShipOnWater(0.5, -4.5),
@@ -47,8 +36,8 @@ const TERRAIN = [
 	{ name: "river-straight", position: [1.5, 0, -0.85] },
 	{ name: "river-corner", position: [2.5, 0, -0.85] },
 	{ name: "bridge", position: [3, 0, -1.7], rotationY: -90.1 },
-	{ name: "water-rocks", position: [-2.5, 0, 0.9] },
-	{ name: "water", position: [0.5, 0, 0.9] },
+	{ name: "water-rocks", position: [-2.5, 0, 0.9] }, //
+	{ name: "water", position: [0.5, 0, 0.9] }, //
 	// Buildings,
 	{ name: "building-mine", position: [1.5, 0, -4.6], rotationY: 45 },
 	{ name: "grass-hill", position: [1, 0, -3.5] },
@@ -97,14 +86,52 @@ const TERRAIN = [
 	{ name: "water-rocks", position: [-2.5, 0, 0.9] },
 	{ name: "grass-forest", position: [0, 0, 0] },
 	{ name: "water", position: [0.5, 0, 0.9] },
-];
+]);
 
-export default function MapLoader() {
-	return (
-		<>
-			{TERRAIN.map((props, index) => (
-				<TerrainObject key={`${props.name}-${index}`} {...props} />
-			))}
-		</>
+export const loadModel = (scene, loader, mixers, modelPath, { position, scale = 1, rotationY = 0 }) => {
+	loader.current.load(
+		modelPath,
+		(gltf) => {
+			const model = gltf.scene;
+			scene.add(model);
+
+			if (modelPath.includes("mill")) {
+				const mixer = new THREE.AnimationMixer(model);
+				const clips = gltf.animations;
+				if (clips.length) {
+					const action = mixer.clipAction(clips[0]);
+					action.play();
+					mixers.current.push(mixer);
+				}
+			}
+
+			model.position.set(...position);
+			model.scale.set(scale, scale, scale);
+			model.rotation.y = rotationY;
+		},
+		undefined,
+		(error) => console.error("Model loading error:", error),
 	);
+};
+
+export default function Terrain({ scene }) {
+	const loader = useRef(new GLTFLoader());
+	const mixers = useRef([]);
+
+	useEffect(() => {
+		// Render map when the component mounts
+		for (const { name, ...rest } of TerrainObjects) {
+			loadModel(scene, loader, mixers, `assets/kenney/pixel-map/models/${name}.glb`, rest);
+		}
+
+		return () => {
+			// Clean up any mixers when the component unmounts
+			for (const mixer of mixers.current) {
+				mixer.stopAllAction();
+			}
+			mixers.current = [];
+		};
+	}, [scene]);
+
+	return null;
 }
