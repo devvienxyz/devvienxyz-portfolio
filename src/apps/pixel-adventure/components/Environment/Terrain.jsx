@@ -25,7 +25,7 @@ const createBldgWallsOnDirt = (x, z) => [
 
 const TerrainObjects = deepFreeze([
 	...createTreeCluster(-3, -5),
-	...createShipOnWater(-3, 0, true, -15),
+	...createShipOnWater(-3, 0, true, -5),
 	...createShipOnWater(0.5, -4.5),
 	...createBldgWallsOnDirt(1, -1.7),
 	// riverbend - meander and bridge

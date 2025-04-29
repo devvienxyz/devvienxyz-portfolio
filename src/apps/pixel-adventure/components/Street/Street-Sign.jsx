@@ -1,32 +1,40 @@
-import { Text } from "@react-three/drei";
-import React, { useRef, useEffect } from "react";
+import { useFrame, useThree } from "@react-three/fiber";
+import React, { useRef } from "react";
+import * as THREE from "three";
+import { PixelText3D } from "../Three";
+import GradientBackdrop from "../Three/Backdrops";
 
-export function Sign({ text, position, rotation, areaName, isActive }) {
+function Sign({ text, position, isActive }) {
 	const signRef = useRef();
+	// added small offset to separate the cube and the text
+	const cubeOffset = [-0.1, 0.05, 0];
 
 	return (
-		<group ref={signRef} position={position} rotation={[0, rotation, 0]}>
-			{/* Arrow Sign */}
-			<mesh>
-				<boxGeometry args={[1.5, 0.3, 0.2]} />
-				<meshStandardMaterial color={isActive ? "red" : "blue"} />
+		<group ref={signRef} position={position}>
+			{/* Temp: Simple cube marker */}
+			<mesh position={cubeOffset}>
+				<boxGeometry args={[0.12, 0.12, 0.12]} />
+				<meshStandardMaterial
+					color={isActive ? "yellow" : "blue"}
+					emissive="white"
+					emissiveIntensity={isActive ? 0.6 : 0}
+				/>
 			</mesh>
-
-			{/* Text Label */}
-			<Text position={[0, 0, 0.1]} fontSize={0.2} color="white">
-				{text}
-			</Text>
+			<PixelText3D text={text} textOptions={{ scale: 0.12 }} />
 		</group>
 	);
 }
 
-export default function StreetSign() {
+export default function StreetSign({ x = -2, y = 0, z = 1.7 }) {
 	return (
-		<group>
-			<Sign text="About" position={[0, 7, 1.5]} rotation={Math.PI / 2} />
-			<Sign text="Projects" position={[0, 6, -1.5]} rotation={-Math.PI / 2} />
-			<Sign text="Experiences" position={[-1.5, 5, 0]} rotation={0} isActive />
-			<Sign text="Contact" position={[1.5, 4, 0]} rotation={Math.PI} />
+		<group position={[x, y, z]} rotation={[0, 0, 0]}>
+			<Sign text="About" position={[x, 0.75, 0]} />
+			<Sign text="Projects" position={[x, 0.6, 0]} />
+			<Sign text="Experiences" position={[x, 0.45, 0]} isActive />
+			<Sign text="Contact" position={[x, 0.3, 0]} />
+			<GradientBackdrop width={1.0} height={1.0} />
 		</group>
 	);
 }
+
+export { Sign };

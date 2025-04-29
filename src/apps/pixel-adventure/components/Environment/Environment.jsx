@@ -4,9 +4,11 @@ import React, { useRef, useEffect } from "react";
 import * as THREE from "three";
 import { useCameraAnimation } from "../../hooks";
 import { StreetSign } from "../Street";
+import { Sun } from "./Celestials";
 import Terrain from "./Terrain";
 
-const TARGET_ZOOMED_POSITION = { x: 1.5, y: 1.3, z: 6 };
+const TARGET_ZOOMED_POSITION = { x: 0.8, y: 1.0, z: 5.0 };
+// const TARGET_ZOOMED_POSITION = { x: 1.5, y: 1.3, z: 6 };
 
 // Shader for background gradient
 const DUAL_GRADIENT = {
@@ -32,7 +34,6 @@ const DUAL_GRADIENT = {
   `,
 };
 
-// Background component using ShaderMaterial
 const DynamicBackground = () => {
 	const materialRef = useRef();
 
@@ -79,20 +80,19 @@ export default function Environment() {
 	return (
 		<>
 			<Lights />
+
 			<DynamicBackground />
 
-			{/* Sun Component */}
-			{/* <Sun scene={scene} /> */}
+			<Sun scene={scene} />
 
-			{/* Orbit Controls */}
 			<OrbitControls
 				ref={controlsRef}
 				enableDamping
 				enablePan
 				screenSpacePanning={false}
 				keyPanSpeed={100}
-				maxDistance={20}
-				minDistance={5}
+				maxDistance={10}
+				minDistance={2}
 				maxPolarAngle={Math.PI / 2}
 			/>
 

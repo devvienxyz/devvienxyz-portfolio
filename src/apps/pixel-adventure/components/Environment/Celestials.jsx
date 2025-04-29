@@ -1,6 +1,6 @@
 import React, { useRef } from "react";
 
-export default function Sun() {
+function Sun() {
 	const sunRef = useRef();
 
 	return (
@@ -17,3 +17,5 @@ export default function Sun() {
 		</>
 	);
 }
+
+export { Sun };
