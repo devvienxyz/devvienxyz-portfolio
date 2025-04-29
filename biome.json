@@ -9,6 +9,7 @@
 		"ignore": [
 			"**/node_modules/**",
 			"**/dist/**",
+			"**/dist-root/**",
 			"**/build/**",
 			"**/.git/**",
 			"**/.github/**",
