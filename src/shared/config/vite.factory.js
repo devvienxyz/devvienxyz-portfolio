@@ -4,6 +4,7 @@ import tailwindcss from "@tailwindcss/vite";
 import react from "@vitejs/plugin-react-swc";
 import { defineConfig, loadEnv } from "vite";
 import { VitePWA } from "vite-plugin-pwa";
+import baseAliases, { rootDir } from "./baseAliases.js";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
@@ -11,9 +12,9 @@ export const createAppConfig = ({ appName, alias = {}, pwaManifest = {}, base = 
 	defineConfig(({ mode }) => {
 		const env = loadEnv(mode, process.cwd(), "");
 
-		return {
+		const resolvedConfig = {
 			base,
-			publicDir: path.resolve(__dirname, "../../../public"),
+			publicDir: path.resolve(rootDir, "public"),
 			plugins: [
 				react(),
 				VitePWA({
@@ -32,11 +33,7 @@ export const createAppConfig = ({ appName, alias = {}, pwaManifest = {}, base = 
 			],
 			resolve: {
 				alias: {
-					react: path.resolve(__dirname, "../../../node_modules/react"),
-					"react-dom": path.resolve(__dirname, "../../../node_modules/react-dom"),
-					"@portfolio": path.resolve(__dirname, "../../../src/apps/portfolio"),
-					"@pixel": path.resolve(__dirname, "../../../src/apps/pixel-adventure"),
-					"@shared": path.resolve(__dirname, "../../../src/shared"),
+					...baseAliases,
 					...alias,
 				},
 				dedupe: ["react", "react-dom"],
@@ -54,4 +51,6 @@ export const createAppConfig = ({ appName, alias = {}, pwaManifest = {}, base = 
 				},
 			},
 		};
+
+		return resolvedConfig;
 	});
