@@ -1,5 +1,5 @@
-import Environment from "@pixel/environment/Environment";
 import { Canvas } from "@react-three/fiber";
+import { Environment } from "./components/Environment";
 
 export default function App() {
 	return (

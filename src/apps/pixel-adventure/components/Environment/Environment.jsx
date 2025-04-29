@@ -2,13 +2,14 @@ import { OrbitControls } from "@react-three/drei";
 import { useFrame, useThree } from "@react-three/fiber";
 import React, { useRef, useEffect } from "react";
 import * as THREE from "three";
-import { Sun } from "./Env-Elements";
-import TerrainMap, { Sign } from "./Terrain";
+import { StreetSign } from "../Street";
+import TerrainMap from "./Terrain";
 
 // Shader for background gradient
 const DUAL_GRADIENT = {
 	vertexShader: `
-    varying ) {
+    varying vec3 vWorldPosition;
+    void main() {
       vec4 worldPosition = modelMatrix * vec4(position, 1.0);
       vWorldPosition = worldPosition.xyz;
       gl_Position = projectionMatrix * viewMatrix * worldPosition;
@@ -19,8 +20,9 @@ const DUAL_GRADIENT = {
     void main() {
       vec3 viewDir = normalize(vWorldPosition);
       float gradient = viewDir.y * 1.0;
-      vec3 topColor = vec3(0.988, 0.992, 1.0);
-      vec3 bottomColor = vec3(0.0, 0.025, 0.142);
+      // float gradient = viewDir.y * 0.4 + 0.1;  // lighter effect
+      vec3 topColor = vec3(0.988, 0.992, 1.0); // rgb(253, 254, 255) or #fdfefe
+      vec3 bottomColor = vec3(0.0, 0.025, 0.142); // rgb(0, 6, 36) or #000624
       vec3 color = mix(bottomColor, topColor, gradient);
       gl_FragColor = vec4(color, 1.0);
     }
@@ -70,7 +72,7 @@ export default function Environment() {
 			<DynamicBackground />
 
 			{/* Sun Component */}
-			<Sun scene={scene} />
+			{/* <Sun scene={scene} /> */}
 
 			{/* Orbit Controls */}
 			<OrbitControls
@@ -79,7 +81,7 @@ export default function Environment() {
 				enablePan
 				screenSpacePanning={false}
 				keyPanSpeed={100}
-				maxDistance={10}
+				maxDistance={20}
 				minDistance={5}
 				maxPolarAngle={Math.PI / 2}
 			/>
@@ -87,11 +89,8 @@ export default function Environment() {
 			{/* Terrain and objects */}
 			<TerrainMap environment={scene} />
 
-			{/* Signs */}
-			<Sign text="About" position={[0, 7, 1.5]} rotation={Math.PI / 2} />
-			<Sign text="Projects" position={[0, 6, -1.5]} rotation={-Math.PI / 2} />
-			<Sign text="Experiences" position={[-1.5, 5, 0]} rotation={0} isActive />
-			<Sign text="Contact" position={[1.5, 4, 0]} rotation={Math.PI} />
+			{/* Street Objects */}
+			<StreetSign />
 		</>
 	);
 }

@@ -1,7 +1,6 @@
-import { useThree } from "@react-three/fiber";
 import React, { useRef } from "react";
 
-export const Sun = () => {
+export default function Sun() {
 	const sunRef = useRef();
 
 	return (
@@ -17,4 +16,4 @@ export const Sun = () => {
 			<pointLight color={0xf7f9ff} intensity={200} distance={100} position={[4, 8, -5]} />
 		</>
 	);
-};
+}
