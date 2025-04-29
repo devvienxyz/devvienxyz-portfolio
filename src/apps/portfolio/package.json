@@ -6,11 +6,7 @@
 	"scripts": {
 		"dev": "vite --port 8000",
 		"build": "vite build",
-		"preview": "vite preview",
-		"vanilla": "live-server src --port=8000",
-		"ngrok-static": "ngrok http --url=\"$NGROK_STATIC_URL\" 8000",
-		"ngrok-dyn": "ngrok http 8000",
-		"test": "jest --watchAll"
+		"preview": "vite preview"
 	},
 	"devDependencies": {},
 	"dependencies": {
