@@ -10,7 +10,8 @@
 		"vanilla": "live-server src --port=8000",
 		"ngrok-static": "ngrok http --url=\"$NGROK_STATIC_URL\" 8000",
 		"ngrok-dyn": "ngrok http 8000",
-		"test": "jest --watchAll",
+		"test": "vitest --watch",
+		"test:ui": "vitest --watch --ui",
 		"dev:portfolio": "pnpm --filter @portfolio dev",
 		"dev:pixel": "pnpm --filter @pixel dev",
 		"build:all": "pnpm -r build",
@@ -21,17 +22,21 @@
 	"devDependencies": {
 		"@biomejs/biome": "1.9.4",
 		"@eslint/js": "^9.25.1",
+		"@testing-library/react": "^16.3.0",
 		"@vitejs/plugin-react-swc": "^3.9.0",
+		"@vitest/ui": "3.1.2",
 		"autoprefixer": "^10.4.21",
 		"eslint": "^9.25.1",
 		"eslint-plugin-react-hooks": "^5.2.0",
 		"eslint-plugin-react-refresh": "^0.4.20",
 		"gh-pages": "^6.3.0",
 		"husky": "^9.1.7",
+		"jsdom": "^26.1.0",
 		"postcss": "^8.5.3",
 		"tailwindcss": "^4.1.4",
 		"vite": "^6.3.2",
-		"vite-plugin-pwa": "^1.0.0"
+		"vite-plugin-pwa": "^1.0.0",
+		"vitest": "^3.1.2"
 	},
 	"dependencies": {
 		"@tailwindcss/vite": "^4.1.4",
