@@ -2,8 +2,11 @@ import { OrbitControls } from "@react-three/drei";
 import { useFrame, useThree } from "@react-three/fiber";
 import React, { useRef, useEffect } from "react";
 import * as THREE from "three";
+import { useCameraAnimation } from "../../hooks";
 import { StreetSign } from "../Street";
 import Terrain from "./Terrain";
+
+const TARGET_ZOOMED_POSITION = { x: 1.5, y: 1.3, z: 6 };
 
 // Shader for background gradient
 const DUAL_GRADIENT = {
@@ -46,10 +49,21 @@ const DynamicBackground = () => {
 	);
 };
 
+function Lights() {
+	return (
+		<>
+			<directionalLight position={[2, 2, 5]} intensity={1} />
+			<ambientLight intensity={1.5} />
+		</>
+	);
+}
+
 export default function Environment() {
 	const { camera, scene } = useThree();
 	const controlsRef = useRef();
 	const clockRef = useRef(new THREE.Clock());
+
+	useCameraAnimation(TARGET_ZOOMED_POSITION, 3);
 
 	useEffect(() => {
 		camera.position.set(-3, 2, 5);
@@ -64,11 +78,7 @@ export default function Environment() {
 
 	return (
 		<>
-			{/* Lights */}
-			<directionalLight position={[2, 2, 5]} intensity={1} />
-			<ambientLight intensity={1.5} />
-
-			{/* Background */}
+			<Lights />
 			<DynamicBackground />
 
 			{/* Sun Component */}
@@ -94,3 +104,5 @@ export default function Environment() {
 		</>
 	);
 }
+
+export { Lights };
