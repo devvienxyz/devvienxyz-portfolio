@@ -44,8 +44,8 @@ export const createAppConfig = ({ appName, alias = {}, pwaManifest = {}, base = 
 			build: {
 				sourcemap: false,
 				outDir: "dist",
+				format: "es",
 				rollupOptions: {
-					input: "../../../src/apps/portfolio/index.html", // main entry point
 					output: {
 						manualChunks(id) {
 							if (id.includes("node_modules")) return "vendor";

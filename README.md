@@ -38,6 +38,12 @@ pnpm list <packages>
 # e.g: react react-dom
 ```
 
+## Release
+
+```bash
+pnpm release
+```
+
 ## Pre-commit
 
 If urgent, this can be overriden by running: `git commit --no-verify`.
