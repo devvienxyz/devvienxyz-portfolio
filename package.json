@@ -13,7 +13,7 @@
 		"build:all": "pnpm -r --filter \"!@shared\" build",
 		"build": "pnpm --filter @portfolio build",
 		"postbuild": "node scripts/merge-dist.js",
-		"deploy": "gh-pages -d dist-root",
+		"deploy": "gh-pages -d dist-root -b main",
 		"release": "pnpm run build && pnpm run postbuild && pnpm run deploy",
 		"prepare": "husky"
 	},
