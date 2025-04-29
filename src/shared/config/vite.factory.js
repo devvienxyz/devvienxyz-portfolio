@@ -7,11 +7,12 @@ import { VitePWA } from "vite-plugin-pwa";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
-export const createAppConfig = ({ appName, alias = {}, pwaManifest = {} }) =>
+export const createAppConfig = ({ appName, alias = {}, pwaManifest = {}, base = "./" }) =>
 	defineConfig(({ mode }) => {
 		const env = loadEnv(mode, process.cwd(), "");
 
 		return {
+			base,
 			publicDir: path.resolve(__dirname, "../../../public"),
 			plugins: [
 				react(),
@@ -44,6 +45,7 @@ export const createAppConfig = ({ appName, alias = {}, pwaManifest = {} }) =>
 				sourcemap: false,
 				outDir: "dist",
 				rollupOptions: {
+					input: "../../../src/apps/portfolio/index.html", // main entry point
 					output: {
 						manualChunks(id) {
 							if (id.includes("node_modules")) return "vendor";

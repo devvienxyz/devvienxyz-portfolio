@@ -17,4 +17,5 @@ export default createAppConfig({
 			},
 		],
 	},
+	base: "/devvienxyz-portfolio/",
 });
