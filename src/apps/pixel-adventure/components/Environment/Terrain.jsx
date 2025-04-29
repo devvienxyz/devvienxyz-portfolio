@@ -1,3 +1,4 @@
+import { useFrame } from "@react-three/fiber";
 import { useEffect, useRef } from "react";
 import * as THREE from "three";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
@@ -132,6 +133,10 @@ export default function Terrain({ scene }) {
 			mixers.current = [];
 		};
 	}, [scene]);
+
+	useFrame((_, delta) => {
+		for (const mixer of mixers.current) mixer.update(delta);
+	});
 
 	return null;
 }
