@@ -4,6 +4,7 @@ import React, { useRef, useEffect } from "react";
 import * as THREE from "three";
 import { useCameraAnimation } from "../../hooks";
 import { StreetSign } from "../Street";
+import { FullScreenGradientBackdrop } from "../Three";
 import { Sun } from "./Celestials";
 import Terrain from "./Terrain";
 
@@ -100,7 +101,12 @@ export default function Environment() {
 			<Terrain scene={scene} />
 
 			{/* Street Objects */}
-			{/* <StreetSign /> */}
+			{/* <StreetSign x={0.8} z={2.5} /> */}
+			<StreetSign x={0.5} z={2.5} renderOrder={999} />
+
+			<FullScreenGradientBackdrop />
+			{/* <GradientBackdrop width={1.0} height={1.0} position={[0.8, 0.5, 0]} /> */}
+			{/* <GradientBackdrop width={1.0} height={1.0} /> */}
 		</>
 	);
 }
