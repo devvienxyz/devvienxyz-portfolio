@@ -5,10 +5,11 @@
 	"private": true,
 	"scripts": {
 		"dev": "vite --port 8000",
-		"build": "vite build",
+		"build": "rm -rf dist/ && vite build",
 		"preview": "vite preview",
 		"gh-predeploy": "pnpm run build",
-		"deploy": "gh-pages -d dist"
+		"deploy": "gh-pages -d dist",
+		"release": "pnpm run build && pnpm run deploy"
 	},
 	"devDependencies": {},
 	"dependencies": {

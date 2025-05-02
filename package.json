@@ -12,10 +12,8 @@
 		"test:ui": "vitest --watch --ui",
 		"dev": "pnpm --filter @portfolio dev",
 		"build:all": "pnpm -r --filter \"!@shared\" build",
-		"build": "rm -rf src/apps/portfolio/dist && pnpm --filter @portfolio build",
-		"postbuild": "node scripts/merge-dist.js",
-		"deploy": "gh-pages -d dist-root",
-		"release": "pnpm run build && pnpm run postbuild && pnpm run deploy",
+		"build": "pnpm --filter @portfolio build",
+		"release": "pnpm --filter @portfolio run release",
 		"prepare": "husky"
 	},
 	"devDependencies": {
