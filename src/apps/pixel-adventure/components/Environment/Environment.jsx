@@ -3,8 +3,7 @@ import { useFrame, useThree } from "@react-three/fiber";
 import { useEffect, useRef } from "react";
 import { BackSide, Clock } from "three/webgpu";
 import { useCameraAnimation } from "../../hooks";
-import { StreetSign } from "../Street";
-import { FullScreenGradientBackdrop } from "../Three";
+import useGameStateManager, { GameStates } from "../../state/game-store.js";
 import { Sun } from "./Celestials";
 import Terrain from "./Terrain";
 
@@ -64,8 +63,11 @@ export default function Environment() {
 	const { camera, scene } = useThree();
 	const controlsRef = useRef();
 	const clockRef = useRef(new Clock());
+	const setGamePhase = useGameStateManager((s) => s.setGamePhase);
 
-	useCameraAnimation(TARGET_ZOOMED_POSITION, 3);
+	useCameraAnimation(TARGET_ZOOMED_POSITION, 3, () => {
+		setGamePhase(GameStates.MENU);
+	});
 
 	useEffect(() => {
 		camera.position.set(-3, 2, 5);
@@ -102,9 +104,9 @@ export default function Environment() {
 
 			{/* Street Objects */}
 			{/* <StreetSign x={0.8} z={2.5} /> */}
-			<StreetSign x={0.5} z={2.5} renderOrder={999} />
+			{/* <StreetSign x={0.5} z={2.5} renderOrder={999} />
 
-			<FullScreenGradientBackdrop />
+			<FullScreenGradientBackdrop /> */}
 			{/* <GradientBackdrop width={1.0} height={1.0} position={[0.8, 0.5, 0]} /> */}
 			{/* <GradientBackdrop width={1.0} height={1.0} /> */}
 		</>

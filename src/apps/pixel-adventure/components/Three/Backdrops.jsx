@@ -58,13 +58,10 @@ const GradientMaterial = shaderMaterial(
 
 extend({ GradientMaterial });
 
-function FullScreenGradientBackdrop() {
+export default function FullScreenGradientBackdrop() {
 	return (
 		<ScreenQuad renderOrder={-1000}>
 			<gradientMaterial transparent depthWrite={false} depthTest={false} uOpacity={0.3} blending={NormalBlending} />
 		</ScreenQuad>
 	);
 }
-
-// export { GradientBackdrop };
-export { FullScreenGradientBackdrop };

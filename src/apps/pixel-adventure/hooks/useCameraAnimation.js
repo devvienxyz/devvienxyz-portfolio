@@ -2,7 +2,7 @@ import { useThree } from "@react-three/fiber";
 import gsap from "gsap";
 import { useEffect } from "react";
 
-function animateCamera(camera, targetPosition, duration = 2) {
+function animateCamera(camera, targetPosition, duration = 2, onComplete = () => {}) {
 	return gsap.to(camera.position, {
 		duration: duration,
 		x: targetPosition.x,
@@ -15,13 +15,11 @@ function animateCamera(camera, targetPosition, duration = 2) {
 		onStart: () => {
 			// console.log("Camera animation started");
 		},
-		onComplete: () => {
-			// console.log("Camera animation completed");
-		},
+		onComplete,
 	});
 }
 
-export default function useCameraAnimation(targetPosition, duration = 2) {
+export default function useCameraAnimation(targetPosition, durationInSec = 2, onComplete = () => {}) {
 	const { camera } = useThree();
 
 	useEffect(() => {
@@ -32,14 +30,14 @@ export default function useCameraAnimation(targetPosition, duration = 2) {
 		// console.log("Target position:", targetPosition);
 
 		// Run the camera animation
-		const animation = animateCamera(camera, targetPosition, duration);
+		const animation = animateCamera(camera, targetPosition, durationInSec, onComplete);
 
 		return () => {
 			// Cleanup: kill any active GSAP tweens when the component unmounts
 			animation.kill();
 			// console.log("Camera animation cleaned up");
 		};
-	}, [camera, targetPosition, duration]);
+	}, [camera, targetPosition, durationInSec, onComplete]);
 
 	return;
 }

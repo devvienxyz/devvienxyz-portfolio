@@ -1,4 +1,5 @@
-import React, { useRef } from "react";
+import { motion } from "framer-motion";
+import { useRef } from "react";
 import { PixelText3D } from "../Three";
 
 function NavItem({ text, position, isActive, scale = 0.5 }) {
@@ -23,17 +24,23 @@ function NavItem({ text, position, isActive, scale = 0.5 }) {
 	);
 }
 
-export default function NavigationMenu({ x = -2, y = 0, z = 1.7 }) {
+export default function Navigation3DMenu({ x = -2, y = 0, z = 1.7 }) {
 	return (
-		<group position={[x, y, z]} rotation={[0, -0.7, 0]} renderOrder={999} transparent={false}>
+		<motion.group
+			position={[x, y, z]}
+			rotation={[0, -0.7, 0]}
+			renderOrder={10}
+			transparent={false}
+			initial={{ opacity: 0.5 }}
+			animate={{ opacity: 1 }}
+			transition={{ duration: 1, ease: "easeIn", delay: 0.3 }}
+		>
 			<NavItem text="About" position={[x, 0.75, 0]} />
 			<NavItem text="Projects" position={[x, 0.6, 0]} />
 			<NavItem text="Experiences" position={[x, 0.45, 0]} isActive />
 			<NavItem text="Contact" position={[x, 0.3, 0]} />
 
-			{/* select */}
-			{/* <GradientBackdrop width={1.0} height={1.0} position={[0.8, 0.5, 0]} /> */}
-			<meshStandardMaterial attach="material" color="white" transparent={false} depthWrite depthTest />
-		</group>
+			{/* <meshStandardMaterial attach="material" color="white" transparent={false} depthWrite depthTest /> */}
+		</motion.group>
 	);
 }

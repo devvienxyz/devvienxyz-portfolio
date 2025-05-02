@@ -1,6 +1,8 @@
 import { create } from "zustand";
 
-export const GameStates = Object.freeze({
+const GameStates = Object.freeze({
+	INTRO: "intro",
+	POST_INTRO: "post_intro",
 	LOADING: "loading",
 	PLAYING: "playing",
 	PAUSED: "paused",
@@ -9,11 +11,11 @@ export const GameStates = Object.freeze({
 });
 
 const useGameStateManager = create((set) => ({
-	state: GameStates.LOADING,
+	gamePhase: GameStates.INTRO,
 
-	setState: (newState) => set(() => ({ state: newState })),
+	setGamePhase: (newPhase) => set(() => ({ gamePhase: newPhase })),
 
-	is: (targetState) => useGameStateManager.getState().state === targetState,
+	is: (targetPhase) => useGameStateManager.getState().gamePhase === targetPhase,
 
 	// Lifecycle transitions
 	startGame: () => set(() => ({ state: GameStates.PLAYING })),
@@ -24,3 +26,5 @@ const useGameStateManager = create((set) => ({
 }));
 
 export default useGameStateManager;
+
+export { GameStates };
