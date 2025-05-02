@@ -8,7 +8,7 @@ const rootDist = path.resolve("dist-root");
 if (fs.existsSync(rootDist)) fse.removeSync(rootDist);
 fse.ensureDirSync(rootDist);
 
-apps.forEach((app) => {
+for (const app of apps) {
 	const appDist = path.resolve(`src/apps/${app}/dist`);
 	if (fs.existsSync(appDist)) {
 		fse.copySync(appDist, rootDist, { overwrite: true });
@@ -16,4 +16,4 @@ apps.forEach((app) => {
 	} else {
 		console.warn(`⚠️ No dist found for ${app}`);
 	}
-});
+}
