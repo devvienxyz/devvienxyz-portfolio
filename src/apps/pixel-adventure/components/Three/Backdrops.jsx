@@ -1,6 +1,6 @@
 import { ScreenQuad, shaderMaterial } from "@react-three/drei";
 import { extend, useFrame } from "@react-three/fiber";
-import * as THREE from "three";
+import { Color, NormalBlending } from "three";
 
 // Define custom shader material
 // const GradientMaterial = shaderMaterial(
@@ -37,7 +37,7 @@ import * as THREE from "three";
 // }
 
 const GradientMaterial = shaderMaterial(
-	{ uColor: new THREE.Color(0x000000), uOpacity: 0.5 }, // Add uOpacity uniform
+	{ uColor: new Color(0x000000), uOpacity: 0.5 }, // Add uOpacity uniform
 	`
     varying vec2 vUv;
     void main() {
@@ -61,13 +61,7 @@ extend({ GradientMaterial });
 function FullScreenGradientBackdrop() {
 	return (
 		<ScreenQuad renderOrder={-1000}>
-			<gradientMaterial
-				transparent
-				depthWrite={false}
-				depthTest={false}
-				uOpacity={0.3}
-				blending={THREE.NormalBlending}
-			/>
+			<gradientMaterial transparent depthWrite={false} depthTest={false} uOpacity={0.3} blending={NormalBlending} />
 		</ScreenQuad>
 	);
 }

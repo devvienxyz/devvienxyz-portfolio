@@ -1,5 +1,6 @@
 import { useEffect, useMemo, useRef } from "react";
-import * as THREE from "three";
+import { Vector3 } from "three";
+import { Quaternion } from "three/src/math/Quaternion";
 
 const directionMap = {
 	up: [0, 1, 0],
@@ -21,17 +22,15 @@ function Arrow({
 
 	const computedTo = useMemo(() => {
 		if (direction && directionMap[direction]) {
-			const dirVec = new THREE.Vector3(...directionMap[direction])
-				.multiplyScalar(scale)
-				.add(new THREE.Vector3(...from));
+			const dirVec = new Vector3(...directionMap[direction]).multiplyScalar(scale).add(new Vector3(...from));
 			return dirVec.toArray();
 		}
 		return to || [0, 1, 0]; // fallback
 	}, [from, to, direction, scale]);
 
 	useEffect(() => {
-		const fromVec = new THREE.Vector3(...from);
-		const toVec = new THREE.Vector3(...computedTo);
+		const fromVec = new Vector3(...from);
+		const toVec = new Vector3(...computedTo);
 		const dir = toVec.clone().sub(fromVec).normalize();
 		const length = toVec.distanceTo(fromVec);
 
@@ -39,7 +38,7 @@ function Arrow({
 		ref.current.setLength(length, 0.2 * length, 0.1 * length);
 	}, [from, computedTo]);
 
-	return <arrowHelper ref={ref} args={[new THREE.Vector3(0, 1, 0), new THREE.Vector3(...from), 1, color]} />;
+	return <arrowHelper ref={ref} args={[new Vector3(0, 1, 0), new Vector3(...from), 1, color]} />;
 }
 
 function MeshArrow({ position = [0, 0, 0], length = 0.3, color = "red" }) {
@@ -72,8 +71,8 @@ function DirectionalArrow({
 	headLengthRatio = 0.2,
 }) {
 	// Create vectors for 'from' and 'to' points
-	const fromVec = new THREE.Vector3(...from);
-	const toVec = new THREE.Vector3(...to);
+	const fromVec = new Vector3(...from);
+	const toVec = new Vector3(...to);
 
 	// Calculate direction and length
 	const dir = toVec.clone().sub(fromVec).normalize();
@@ -86,8 +85,8 @@ function DirectionalArrow({
 	// Effect to update the position and rotation of the arrow
 	useEffect(() => {
 		// Calculate rotation to align the arrow with the direction
-		const quaternion = new THREE.Quaternion().setFromUnitVectors(
-			new THREE.Vector3(0, 1, 0), // default forward direction
+		const quaternion = new Quaternion().setFromUnitVectors(
+			new Vector3(0, 1, 0), // default forward direction
 			dir,
 		);
 		groupRef.current.setRotationFromQuaternion(quaternion);

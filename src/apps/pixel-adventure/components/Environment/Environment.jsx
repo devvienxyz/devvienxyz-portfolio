@@ -1,7 +1,7 @@
 import { OrbitControls } from "@react-three/drei";
 import { useFrame, useThree } from "@react-three/fiber";
-import React, { useRef, useEffect } from "react";
-import * as THREE from "three";
+import { useEffect, useRef } from "react";
+import { BackSide, Clock } from "three/webgpu";
 import { useCameraAnimation } from "../../hooks";
 import { StreetSign } from "../Street";
 import { FullScreenGradientBackdrop } from "../Three";
@@ -45,7 +45,7 @@ const DynamicBackground = () => {
 				ref={materialRef}
 				vertexShader={DUAL_GRADIENT.vertexShader}
 				fragmentShader={DUAL_GRADIENT.fragmentShader}
-				side={THREE.BackSide}
+				side={BackSide}
 			/>
 		</mesh>
 	);
@@ -63,7 +63,7 @@ function Lights() {
 export default function Environment() {
 	const { camera, scene } = useThree();
 	const controlsRef = useRef();
-	const clockRef = useRef(new THREE.Clock());
+	const clockRef = useRef(new Clock());
 
 	useCameraAnimation(TARGET_ZOOMED_POSITION, 3);
 

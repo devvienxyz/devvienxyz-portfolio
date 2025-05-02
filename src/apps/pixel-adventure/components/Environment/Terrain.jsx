@@ -1,6 +1,6 @@
 import { useFrame } from "@react-three/fiber";
 import { useEffect, useRef } from "react";
-import * as THREE from "three";
+import { AnimationMixer } from "three";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
 import deepFreeze from "../../../../shared/utils/deep-freeze";
 
@@ -97,7 +97,7 @@ export const loadModel = (scene, loader, mixers, modelPath, { position, scale = 
 			scene.add(model);
 
 			if (modelPath.includes("mill")) {
-				const mixer = new THREE.AnimationMixer(model);
+				const mixer = new AnimationMixer(model);
 				const clips = gltf.animations;
 				if (clips.length) {
 					const action = mixer.clipAction(clips[0]);
