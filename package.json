@@ -2,6 +2,7 @@
 	"name": "devvienxyz",
 	"version": "1.0.0",
 	"private": true,
+	"type": "module",
 	"scripts": {
 		"format-check-all": "bash ./scripts/format.sh format_check_all",
 		"format-check-staged": "bash ./scripts/format.sh format_check_staged",

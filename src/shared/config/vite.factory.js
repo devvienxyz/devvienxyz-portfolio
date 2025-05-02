@@ -17,18 +17,18 @@ export const createAppConfig = ({ appName, alias = {}, pwaManifest = {}, base = 
 			publicDir: path.resolve(rootDir, "public"),
 			plugins: [
 				react(),
-				VitePWA({
-					registerType: "autoUpdate",
-					manifest: {
-						name: pwaManifest.name || appName,
-						short_name: pwaManifest.short_name || appName,
-						start_url: "/",
-						display: "standalone",
-						theme_color: "#ffffff",
-						background_color: "#ffffff",
-						icons: pwaManifest.icons || [],
-					},
-				}),
+				// VitePWA({
+				// 	registerType: "autoUpdate",
+				// 	manifest: {
+				// 		name: pwaManifest.name || appName,
+				// 		short_name: pwaManifest.short_name || appName,
+				// 		start_url: "/",
+				// 		display: "standalone",
+				// 		theme_color: "#ffffff",
+				// 		background_color: "#ffffff",
+				// 		icons: pwaManifest.icons || [],
+				// 	},
+				// }),
 				tailwindcss(),
 			],
 			resolve: {
