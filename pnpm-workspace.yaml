@@ -1,8 +1,0 @@
-packages:
-  - src/apps/*
-  - src/shared
-
-onlyBuiltDependencies:
-  - '@biomejs/biome'
-  - '@swc/core'
-  - esbuild
