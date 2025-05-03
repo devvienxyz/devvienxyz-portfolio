@@ -1,5 +1,6 @@
-import { Text3D } from "@react-three/drei";
-import React from "react";
+import { Text3D as DreiText3d } from "@react-three/drei";
+import { extend } from "@react-three/fiber";
+import NormalColorMaterial from "../Shaders/Normal.js";
 
 const fontUrl = "assets/fonts/jersey_15/Jersey 15_Regular.json";
 const defaultTextOptions = {
@@ -14,19 +15,19 @@ const defaultTextOptions = {
 	scale: 0.2,
 };
 
-function PixelText3D({ text, textOptions = {}, withGlow = false }) {
+extend({ NormalColorMaterial });
+
+export default function Text({ text, textOptions = {}, withGlow = false }) {
 	const mergedTextOptions = { ...defaultTextOptions, ...textOptions };
 
 	return (
-		<Text3D font={fontUrl} {...mergedTextOptions}>
+		<DreiText3d font={fontUrl} {...mergedTextOptions}>
 			{text}
 			{withGlow ? (
 				<meshStandardMaterial color="yellow" emissive="cyan" emissiveIntensity={1} metalness={0.3} roughness={0.1} />
 			) : (
 				<meshNormalMaterial />
 			)}
-		</Text3D>
+		</DreiText3d>
 	);
 }
-
-export { PixelText3D };

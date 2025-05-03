@@ -1,3 +1,3 @@
 export * from "./Shapes.jsx";
-export * from "./Text.jsx";
-export * from "./Backdrops.jsx";
+export { default as Text } from "./Text.jsx";
+export { default as FullScreenGradientBackdrop } from "./Backdrops.jsx";

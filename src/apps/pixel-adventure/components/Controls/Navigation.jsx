@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
-import { useRef } from "react";
-import { PixelText3D } from "../Three";
+import { useEffect, useRef } from "react";
+import Text from "../Three";
 
 function NavItem({ text, position, isActive, scale = 0.5 }) {
 	const NavItemRef = useRef();
@@ -18,29 +18,45 @@ function NavItem({ text, position, isActive, scale = 0.5 }) {
 					emissiveIntensity={isActive ? 0.6 : 0}
 				/>
 			</mesh>
-			{/* <PixelText3D text={text} textOptions={{ scale }} /> */}
-			<PixelText3D text={text} />
+			<Text text={text} />
 		</group>
 	);
 }
 
-export default function Navigation3DMenu({ x = -2, y = 0, z = 1.7 }) {
+// export default function Navigation3DMenu({ x = 0.5, y = 0, z = 2.5 }) {
+// 	return (
+// 		<motion.group
+// 			position={[x, y, z]}
+// 			rotation={[0, -0.7, 0]}
+// 			renderOrder={100}
+// 			// transparent={false}
+// 			// initial={{ opacity: 0.5 }}
+// 			// animate={{ opacity: 1 }}
+// 			// transition={{ duration: 0.5, ease: "easeIn", delay: 0.2 }}
+// 		>
+// 			<NavItem text="About" position={[x, 0.75, 0]} />
+// 			<NavItem text="Projects" position={[x, 0.6, 0]} />
+// 			<NavItem text="Experiences" position={[x, 0.45, 0]} isActive />
+// 			<NavItem text="Contact" position={[x, 0.3, 0]} />
+// 		</motion.group>
+// 	);
+// }
+
+export default function Navigation3DMenu({ x = 0.5, y = 0, z = 2.5 }) {
+	const menuRef = useRef();
+
+	useEffect(() => {
+		if (menuRef.current) {
+			menuRef.current.layers.set(0); // Set navigation menu to layer 0
+		}
+	}, []);
+
 	return (
-		<motion.group
-			position={[x, y, z]}
-			rotation={[0, -0.7, 0]}
-			renderOrder={10}
-			transparent={false}
-			initial={{ opacity: 0.5 }}
-			animate={{ opacity: 1 }}
-			transition={{ duration: 1, ease: "easeIn", delay: 0.3 }}
-		>
+		<motion.group ref={menuRef} position={[x, y, z]} rotation={[0, -0.7, 0]} renderOrder={100}>
 			<NavItem text="About" position={[x, 0.75, 0]} />
 			<NavItem text="Projects" position={[x, 0.6, 0]} />
 			<NavItem text="Experiences" position={[x, 0.45, 0]} isActive />
 			<NavItem text="Contact" position={[x, 0.3, 0]} />
-
-			{/* <meshStandardMaterial attach="material" color="white" transparent={false} depthWrite depthTest /> */}
 		</motion.group>
 	);
 }

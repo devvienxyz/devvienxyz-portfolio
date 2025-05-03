@@ -1,40 +1,7 @@
 import { ScreenQuad, shaderMaterial } from "@react-three/drei";
-import { extend, useFrame } from "@react-three/fiber";
+import { extend } from "@react-three/fiber";
+import { useEffect, useRef } from "react";
 import { Color, NormalBlending } from "three";
-
-// Define custom shader material
-// const GradientMaterial = shaderMaterial(
-// 	{ uColor: new THREE.Color(0x000000) },
-// 	// Vertex Shader
-// 	`
-// 		varying vec2 vUv;
-// 		void main() {
-// 			vUv = uv;
-// 			gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
-// 		}
-// 	`,
-// 	// Fragment Shader
-// 	`
-// 		varying vec2 vUv;
-// 		uniform vec3 uColor;
-// 		void main() {
-// 			float alpha = 1.0 - vUv.y;
-// 			gl_FragColor = vec4(uColor, alpha);
-// 		}
-// 	`,
-// );
-
-// extend({ GradientMaterial });
-
-// function GradientBackdrop({ width = 1.0, height = 1.0, position = [0, 0, 0] }) {
-// 	// [-1.7, 0, -0.05]
-// 	return (
-// 		<mesh position={position} renderOrder={-1}>
-// 			<planeGeometry args={[width, height]} />
-// 			<gradientMaterial transparent depthWrite={false} />
-// 		</mesh>
-// 	);
-// }
 
 const GradientMaterial = shaderMaterial(
 	{ uColor: new Color(0x000000), uOpacity: 0.5 }, // Add uOpacity uniform
@@ -58,10 +25,51 @@ const GradientMaterial = shaderMaterial(
 
 extend({ GradientMaterial });
 
+// export default function FullScreenGradientBackdrop() {
+// 	return (
+// 		<ScreenQuad
+// 			renderOrder={-10}
+// 			transparent={true}
+// 			depthWrite={false}
+// 			depthTest={false}
+// 			uOpacity={0.3} // Adjust opacity as needed
+// 			blending={NormalBlending}
+// 		>
+// 			<gradientMaterial uColor={new Color(0xff0000)} />
+// 			{/* <gradientMaterial transparent depthWrite={false} depthTest={false} uOpacity={0.3} blending={NormalBlending} /> */}
+// 		</ScreenQuad>
+// 	);
+// }
+
 export default function FullScreenGradientBackdrop() {
+	const backdropRef = useRef();
+	useEffect(() => {
+		if (backdropRef.current) {
+			backdropRef.current.layers.set(1); // Set backdrop to layer 1
+		}
+	}, []);
+
 	return (
-		<ScreenQuad renderOrder={-1000}>
-			<gradientMaterial transparent depthWrite={false} depthTest={false} uOpacity={0.3} blending={NormalBlending} />
+		<ScreenQuad
+			ref={backdropRef}
+			renderOrder={-10}
+			// transparent={true}
+			// depthWrite={false}
+			// depthTest={false}
+			// uOpacity={0.3}
+			// blending={NormalBlending}
+		>
+			{/* <gradientMaterial /> */}
+			{/* <gradientMaterial uColor={new Color(0xff0000)} /> */}
+			{/* <gradientMaterial transparent depthWrite={false} depthTest={false} uOpacity={0.3} blending={NormalBlending} /> */}
+			<gradientMaterial
+				transparent
+				uColor={new Color(0xff0000)}
+				depthWrite={false}
+				depthTest={false}
+				uOpacity={0.3}
+				blending={NormalBlending}
+			/>
 		</ScreenQuad>
 	);
 }

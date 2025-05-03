@@ -1,5 +1,5 @@
 import React, { useRef } from "react";
-import { PixelText3D } from "../Three";
+import Text from "../Three";
 // import GradientBackdrop from "../Three/Backdrops";
 
 function Sign({ text, position, isActive, scale = 0.5 }) {
@@ -18,8 +18,8 @@ function Sign({ text, position, isActive, scale = 0.5 }) {
 					emissiveIntensity={isActive ? 0.6 : 0}
 				/>
 			</mesh>
-			{/* <PixelText3D text={text} textOptions={{ scale }} /> */}
-			<PixelText3D text={text} />
+			{/* <Text text={text} textOptions={{ scale }} /> */}
+			<Text text={text} />
 		</group>
 	);
 }
