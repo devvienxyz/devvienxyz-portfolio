@@ -4,6 +4,7 @@ import { useEffect, useRef } from "react";
 import { BackSide } from "three/webgpu";
 import { useCameraAnimation } from "../../hooks";
 import useGameStateManager, { GameStates } from "../../state/game-store.js";
+import Avatar from "../Avatar/Avatar";
 import { Sun } from "./Celestials";
 import Terrain from "./Terrain";
 
@@ -81,11 +82,8 @@ export default function Environment() {
 	return (
 		<>
 			<Lights />
-
 			<DynamicBackground />
-
 			<Sun scene={scene} />
-
 			<OrbitControls
 				ref={controlsRef}
 				enableDamping
@@ -96,9 +94,8 @@ export default function Environment() {
 				minDistance={2}
 				maxPolarAngle={Math.PI / 2}
 			/>
-
-			{/* Terrain and objects */}
 			<Terrain scene={scene} />
+			<Avatar />
 		</>
 	);
 }
