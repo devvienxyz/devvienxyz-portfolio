@@ -1,6 +1,9 @@
+import { GROUND_LEVEL } from "../constants/terrain-misc";
+
 const Zones = Object.freeze({
 	about: {
-		bounds: { minX: -4.5, maxX: 3, minZ: -5.5, maxZ: 1.9 },
+		bounds: { minX: -3.0, maxX: -2.0, minZ: 1.0, maxZ: 3.0 },
+		initialPoints: [-2.5, GROUND_LEVEL, 1.5],
 		preRequisiteZone: null,
 	},
 	projects: {
