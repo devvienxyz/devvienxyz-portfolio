@@ -16,7 +16,7 @@ const Zones = Object.freeze({
 		preRequisiteZone: 2,
 	},
 	map: {
-		bounds: { minX: -4.5, maxX: 3, minZ: -5.5, maxZ: 1.9 },
+		bounds: { minX: -3.5, maxX: 4, minZ: -3.8, maxZ: 3.6 },
 		preRequisiteZone: 3,
 	},
 });
