@@ -72,7 +72,6 @@ export default function useMovementController({ onMove, onJump, actions, complet
 
 		// Movement logic
 		if (canEnterZone(nextX, nextZ, completedZone)) {
-			console.log(`Moving to: ${nextX}, ${nextZ}`);
 			if (onMove) onMove(velocity.current, direction.current);
 		}
 
