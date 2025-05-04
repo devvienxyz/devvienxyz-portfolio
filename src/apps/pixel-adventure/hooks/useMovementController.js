@@ -1,11 +1,9 @@
 import { useCallback, useEffect, useRef } from "react";
 import { Vector3 } from "three";
 import AvatarActions from "../constants/avatar-actions.js";
+import { JUMP_VELOCITY } from "../constants/avatar-actions.js";
+import { GRAVITY, GROUND_LEVEL } from "../constants/terrain-misc.js";
 import canEnterZone from "../utils/zones.js";
-
-const GRAVITY = -9.8;
-const JUMP_VELOCITY = 3.0;
-const GROUND_LEVEL = 0.2;
 
 export default function useMovementController({ onMove, onJump, actions, completedZone = null }) {
 	const keys = useRef(new Map());

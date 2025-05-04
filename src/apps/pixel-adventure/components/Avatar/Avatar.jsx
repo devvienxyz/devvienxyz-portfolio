@@ -1,15 +1,9 @@
 import { useAnimations, useGLTF } from "@react-three/drei";
 import { useFrame } from "@react-three/fiber";
 import { useRef } from "react";
+import Avatars, { AVATAR_SCALE } from "../../constants/avatar-attributes.js";
 import useMovementController from "../../hooks/useMovementController.js";
 import { Zones } from "../../utils/zones.js";
-
-const Avatars = Object.freeze({
-	default: "character-female-e",
-	// TODO: Add more avatars
-});
-
-const AVATAR_SCALE = 0.2;
 
 export default function Avatar() {
 	const group = useRef();

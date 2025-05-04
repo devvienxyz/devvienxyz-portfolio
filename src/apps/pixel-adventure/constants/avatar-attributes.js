@@ -1,3 +1,10 @@
+const Avatars = Object.freeze({
+	default: "character-female-e",
+	// TODO: Add more avatars
+});
+
+export default Avatars;
+
 const AvatarMeshParts = Object.freeze({
 	ROOT: "root",
 	LEG_LEFT: "leg-left",
@@ -10,4 +17,6 @@ const AvatarMeshParts = Object.freeze({
 	HEAD_MESH: "head-mesh",
 });
 
-export { AvatarMeshParts };
+const AVATAR_SCALE = 0.2;
+
+export { AvatarMeshParts, AVATAR_SCALE };
