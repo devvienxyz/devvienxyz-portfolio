@@ -1,11 +1,8 @@
 import { useAnimations, useGLTF } from "@react-three/drei";
 import { useFrame } from "@react-three/fiber";
-import { useEffect, useRef } from "react";
+import { useRef } from "react";
 import useMovementController from "../../hooks/useMovementController.js";
 
-const WALK_SPEED = 1.0; // 2.5;
-const GRAVITY = -9.8;
-const JUMP_VELOCITY = 3.0;
 const Avatars = Object.freeze({
 	default: "character-female-e.glb",
 	// TODO: Add more avatars

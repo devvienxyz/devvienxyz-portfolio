@@ -2,7 +2,7 @@ import { useFrame } from "@react-three/fiber";
 import { useEffect, useRef } from "react";
 import { AnimationMixer } from "three";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
-import TerrainObjects from "../../constants/terrain-objects.js";
+import { NormalizedTerrainObjects as TerrainObjects } from "../../constants/terrain-normalized.js";
 
 export const loadModel = (scene, loader, mixers, modelPath, { position, scale = 1, rotationY = 0 }) => {
 	loader.current.load(

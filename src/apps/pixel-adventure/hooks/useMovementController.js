@@ -1,11 +1,13 @@
 import { useCallback, useEffect, useRef } from "react";
 import { Vector3 } from "three";
+import AvatarActions from "../constants/avatar-actions.js";
+import canEnterZone from "../utils/zones.js";
 
 const GRAVITY = -9.8;
 const JUMP_VELOCITY = 3.0;
 const GROUND_LEVEL = 0.2;
 
-export default function useMovementController({ onMove, onJump, actions }) {
+export default function useMovementController({ onMove, onJump, actions, completedZone = null }) {
 	const keys = useRef(new Map());
 	const direction = useRef(new Vector3());
 	const velocity = useRef(new Vector3());
@@ -55,6 +57,10 @@ export default function useMovementController({ onMove, onJump, actions }) {
 		direction.current.normalize();
 		velocity.current.copy(direction.current).multiplyScalar(delta);
 
+		// Compute next intended position
+		const nextX = position.x + velocity.current.x;
+		const nextZ = position.z + velocity.current.z;
+
 		// Gravity
 		if (!isOnGround.current) {
 			velocityY.current += GRAVITY * delta;
@@ -67,15 +73,20 @@ export default function useMovementController({ onMove, onJump, actions }) {
 		}
 
 		// Movement logic
-		if (onMove) onMove(velocity.current, direction.current);
+		if (canEnterZone(nextX, nextZ, completedZone)) {
+			console.log(`Moving to: ${nextX}, ${nextZ}`);
+			if (onMove) onMove(velocity.current, direction.current);
+		}
+
+		// if (onMove) onMove(velocity.current, direction.current);
 
 		// Animation control
 		if (!isOnGround.current) {
-			play("jump");
+			play(AvatarActions.JUMP);
 		} else if (direction.current.lengthSq() > 0) {
-			play("walk");
+			play(AvatarActions.WALK);
 		} else {
-			play("idle");
+			play(AvatarActions.IDLE);
 		}
 	};
 
