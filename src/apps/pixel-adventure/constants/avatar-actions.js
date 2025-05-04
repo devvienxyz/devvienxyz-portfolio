@@ -35,6 +35,6 @@ const AvatarActions = Object.freeze({
 
 export default AvatarActions;
 
-const JUMP_VELOCITY = 3.0;
+const JUMP_VELOCITY = 2.0;
 
 export { JUMP_VELOCITY };
