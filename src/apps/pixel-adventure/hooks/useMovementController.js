@@ -5,7 +5,7 @@ import { JUMP_VELOCITY } from "../constants/avatar-actions.js";
 import { GRAVITY, GROUND_LEVEL } from "../constants/terrain-misc.js";
 import canEnterZone from "../utils/zones.js";
 
-export default function useMovementController({ onMove, onJump, actions, completedZone = null }) {
+export default function useMovementController({ onMove, onJump, actions, completedZone = 0 }) {
 	const keys = useRef(new Map());
 	const direction = useRef(new Vector3());
 	const velocity = useRef(new Vector3());
