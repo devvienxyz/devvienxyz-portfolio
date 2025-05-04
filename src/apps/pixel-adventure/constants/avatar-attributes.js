@@ -17,6 +17,6 @@ const AvatarMeshParts = Object.freeze({
 	HEAD_MESH: "head-mesh",
 });
 
-const AVATAR_SCALE = 0.2;
+const AVATAR_SCALE = 0.1;
 
 export { AvatarMeshParts, AVATAR_SCALE };
