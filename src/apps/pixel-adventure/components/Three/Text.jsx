@@ -1,8 +1,8 @@
 import { Text3D as DreiText3d } from "@react-three/drei";
 import { extend } from "@react-three/fiber";
+import { DEFAULT_FONT } from "../../constants/terrain-misc.js";
 import NormalColorMaterial from "../Shaders/Normal.js";
 
-const fontUrl = "assets/fonts/jersey_15/Jersey 15_Regular.json";
 const defaultTextOptions = {
 	fontSize: 1,
 	position: [0, 0, 0],
@@ -21,7 +21,7 @@ export default function Text({ text, textOptions = {}, withGlow = false }) {
 	const mergedTextOptions = { ...defaultTextOptions, ...textOptions };
 
 	return (
-		<DreiText3d font={fontUrl} {...mergedTextOptions}>
+		<DreiText3d font={DEFAULT_FONT} {...mergedTextOptions}>
 			{text}
 			{withGlow ? (
 				<meshStandardMaterial color="yellow" emissive="cyan" emissiveIntensity={1} metalness={0.3} roughness={0.1} />

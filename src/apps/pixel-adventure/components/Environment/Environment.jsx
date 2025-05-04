@@ -5,7 +5,7 @@ import { BackSide } from "three/webgpu";
 import { useCameraAnimation } from "../../hooks";
 import useGameStateManager, { GameStates } from "../../state/game-store.js";
 import Avatar from "../Avatar/Avatar";
-import GridGuide from "../Guides/Grid-Guide.jsx";
+import GridGuide from "../Controls/Grid-Guide.jsx";
 import { Sun } from "./Celestials";
 import Terrain from "./Terrain";
 
@@ -60,7 +60,7 @@ function Lights() {
 	);
 }
 
-export default function Environment({ showGrid }) {
+export default function Environment() {
 	const { camera, scene } = useThree();
 	const controlsRef = useRef();
 	const setGamePhase = useGameStateManager((s) => s.setGamePhase);
@@ -97,7 +97,6 @@ export default function Environment({ showGrid }) {
 			/>
 			<Terrain scene={scene} />
 			<Avatar />
-			{showGrid && <GridGuide />}
 		</>
 	);
 }
