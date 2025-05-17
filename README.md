@@ -46,7 +46,7 @@ pnpm up "@babel/*"  # Updates all dependencies under the @babel scope
 pnpm up --recursive
 ```
 
-See more options and commands: https://pnpm.io/cli
+See more options and commands: <https://pnpm.io/cli>
 
 ## Release
 
@@ -60,14 +60,8 @@ If urgent, this can be overriden by running: `git commit --no-verify`.
 
 ## Assets & Attribution
 
+HUGE THANKS to Kenney!
+
 Pixel art and game assets provided by [Kenney](https://kenney.nl/assets), licensed under [CC0 1.0 Universal](https://creativecommons.org/publicdomain/zero/1.0/).
 
 Kenney provides high-quality, free-to-use game assets that help bring this project to life.
-
-## Support My Work
-
-If you find my projects helpful, consider supporting me:
-
-<a href="https://www.buymeacoffee.com/devvienxyz" target="_blank">
-  <img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="Buy Me A Coffee" width="200" />
-</a>
