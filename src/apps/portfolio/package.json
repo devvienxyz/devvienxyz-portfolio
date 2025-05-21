@@ -1,20 +1,19 @@
 {
-	"name": "@portfolio",
-	"type": "module",
-	"version": "1.0.0",
-	"private": true,
-	"scripts": {
-		"dev": "vite --port 8000",
-		"build": "rm -rf dist/ && vite build",
-		"preview": "vite preview",
-		"gh-predeploy": "pnpm run build",
-		"deploy": "gh-pages -d dist",
-		"release": "pnpm run build && pnpm run deploy"
-	},
-	"devDependencies": {},
-	"dependencies": {
-		"@shared": "workspace:*",
-		"@pixel": "workspace:*"
-	},
-	"license": "MIT"
+  "name": "@portfolio",
+  "type": "module",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "vite --port 8002",
+    "build": "rm -rf dist/ && vite build",
+    "preview": "vite preview",
+    "gh-predeploy": "pnpm run build",
+    "deploy": "gh-pages -d dist",
+    "release": "pnpm run build && pnpm run deploy"
+  },
+  "devDependencies": {},
+  "dependencies": {
+    "@shared": "workspace:*",
+    "@pixel": "workspace:*"
+  }
 }
