@@ -3,6 +3,8 @@
 🚧 **Work in Progress**
 This project is actively being developed.
 
+![Short demo](public/demo/output.gif)
+
 ## Setup
 
 ```bash
