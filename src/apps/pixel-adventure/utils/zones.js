@@ -13,7 +13,13 @@ const Zones = Object.freeze({
 		bounds: { minX: -3.0, maxX: -2.0, minZ: 1.0, maxZ: 3.0 },
 		initialPoints: [-2.5, GROUND_LEVEL, 1.1],
 		// building-port
-		targetZoomFocus: [-2.5, 0, 0.7],
+		// targetZoomFocus: [-2.5, 1.2, 0.7],
+		// targetZoomFocus: [-4, 1.2, 0.7],
+		// targetZoomFocus: [-2, 1.5, 3.5],
+		// targetZoomFocus: [-3, 0.5, 1.5],
+		// targetZoomFocus: [-1.8, 0.5, 1.5],
+		targetZoomFocus: [-3.0, 0.5, 1.5],
+		cameraLookAt: [-4, 0.5, -2],
 		preRequisiteZone: 0,
 	},
 	[ZoneNames.ABOUT]: {
@@ -21,6 +27,7 @@ const Zones = Object.freeze({
 		initialPoints: [-2.5, GROUND_LEVEL, 1.1],
 		// building-mill
 		targetZoomFocus: [-1.5, 0.2, -0.8],
+		cameraLookAt: [-1.5, 0.2, -0.8],
 		preRequisiteZone: 1,
 	},
 	[ZoneNames.PROJECTS]: {
@@ -28,6 +35,7 @@ const Zones = Object.freeze({
 		initialPoints: [-2.5, GROUND_LEVEL, 1.1],
 		// building-archery
 		targetZoomFocus: [-0.5, 0, -2.8],
+		cameraLookAt: [-0.5, 0, -2.8],
 		preRequisiteZone: 2,
 	},
 	[ZoneNames.EXPERIENCES]: {
@@ -35,6 +43,7 @@ const Zones = Object.freeze({
 		initialPoints: [-2.5, GROUND_LEVEL, 1.1],
 		// stone-mountain
 		targetZoomFocus: [3, 0, -1.9],
+		cameraLookAt: [3, 0, -1.9],
 		preRequisiteZone: 3,
 	},
 	[ZoneNames.CREDITS]: {
@@ -42,6 +51,7 @@ const Zones = Object.freeze({
 		initialPoints: [-2.5, GROUND_LEVEL, 1.1],
 		// building-wizard-tower
 		targetZoomFocus: [3, 0, 2.9],
+		cameraLookAt: [3, 0, 2.9],
 		preRequisiteZone: 4,
 	},
 	map: {

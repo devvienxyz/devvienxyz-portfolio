@@ -1,9 +1,9 @@
+import Avatars, { AVATAR_SCALE } from "@pixel/constants/avatar-attributes.js";
+import useMovementController from "@pixel/hooks/useMovementController.js";
+import { Zones } from "@pixel/utils/zones.js";
 import { useAnimations, useGLTF } from "@react-three/drei";
 import { useFrame } from "@react-three/fiber";
 import { useRef } from "react";
-import Avatars, { AVATAR_SCALE } from "../../constants/avatar-attributes.js";
-import useMovementController from "../../hooks/useMovementController.js";
-import { Zones } from "../../utils/zones.js";
 
 export default function Avatar() {
 	const group = useRef();

@@ -12,8 +12,10 @@ const GameStates = Object.freeze({
 
 const useGameStateManager = create((set) => ({
 	gamePhase: GameStates.INTRO,
+	completedZone: 0,
 
 	setGamePhase: (newPhase) => set(() => ({ gamePhase: newPhase })),
+	setCompletedZone: (zone) => set(() => ({ completedZone: zone })),
 
 	is: (targetPhase) => useGameStateManager.getState().gamePhase === targetPhase,
 

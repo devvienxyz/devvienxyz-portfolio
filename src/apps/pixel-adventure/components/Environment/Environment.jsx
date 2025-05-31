@@ -1,15 +1,13 @@
+import Avatar from "@pixel/components/Avatar/Avatar";
+import { useCameraAnimation } from "@pixel/hooks";
+import useGameStateManager, { GameStates } from "@pixel/state/game-store.js";
+import { Zones } from "@pixel/utils/zones.js";
 import { OrbitControls } from "@react-three/drei";
 import { useFrame, useThree } from "@react-three/fiber";
-import { useEffect, useRef } from "react";
+import { useRef } from "react";
 import { BackSide } from "three/webgpu";
-import { useCameraAnimation } from "../../hooks";
-import useGameStateManager, { GameStates } from "../../state/game-store.js";
-import Avatar from "../Avatar/Avatar";
-import GridGuide from "../Controls/Grid-Guide.jsx";
 import { Sun } from "./Celestials";
 import Terrain from "./Terrain";
-
-const TARGET_ZOOMED_POSITION = { x: 0.8, y: 1.0, z: 5.0 };
 
 // Shader for background gradient
 const DUAL_GRADIENT = {
@@ -65,14 +63,14 @@ export default function Environment() {
 	const controlsRef = useRef();
 	const setGamePhase = useGameStateManager((s) => s.setGamePhase);
 
-	useCameraAnimation(TARGET_ZOOMED_POSITION, 3, () => {
+	useCameraAnimation(Zones.initial.targetZoomFocus, Zones.initial.cameraLookAt, 3, () => {
 		setGamePhase(GameStates.MENU);
 	});
 
-	useEffect(() => {
-		camera.position.set(-3, 2, 5);
-		camera.lookAt(0, 0, 0);
-	}, [camera]);
+	// useEffect(() => {
+	// 	camera.position.set(-3, 2, 5);
+	// 	camera.lookAt(0, 0, 0);
+	// }, [camera]);
 
 	useFrame(() => {
 		if (controlsRef.current) {
