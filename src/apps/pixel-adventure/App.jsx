@@ -1,10 +1,11 @@
+import DebugPanel from "@pixel/components/Controls/Debug-Panel";
+import GridGuide from "@pixel/components/Controls/Grid-Guide";
+import LazyNavBackdrop from "@pixel/components/Controls/Lazy-Nav";
+import { Environment } from "@pixel/components/Environment";
+import { Cube3dLoader } from "@pixel/components/Loaders";
+import useGameStateManager, { GameStates } from "@pixel/state/game-store";
 import { Canvas } from "@react-three/fiber";
-import { useState } from "react";
-import DebugPanel from "./components/Controls/Debug-Panel.jsx";
-import GridGuide from "./components/Controls/Grid-Guide.jsx";
-import LazyNavBackdrop from "./components/Controls/Lazy-Nav";
-import { Environment } from "./components/Environment";
-import useGameStateManager, { GameStates } from "./state/game-store.js";
+import { Suspense, useState } from "react";
 
 const isDebug = process.env.NODE_ENV !== "production";
 
@@ -19,9 +20,11 @@ export default function App() {
 			{isDebug && <DebugPanel {...{ isDebug, showGrid, setShowGrid, showMarkers, setShowMarkers }} />}
 
 			<Canvas camera={{ fov: 50, near: 0.1, far: 1000 }}>
-				<Environment />
-				{showMenu && <LazyNavBackdrop />}
-				{isDebug && showGrid && <GridGuide showMarkers={showMarkers} />}
+				<Suspense fallback={<Cube3dLoader />}>
+					<Environment />
+					{showMenu && <LazyNavBackdrop />}
+					{isDebug && showGrid && <GridGuide showMarkers={showMarkers} />}
+				</Suspense>
 			</Canvas>
 		</div>
 	);

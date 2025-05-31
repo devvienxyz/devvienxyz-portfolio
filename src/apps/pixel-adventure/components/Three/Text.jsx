@@ -17,8 +17,8 @@ const defaultTextOptions = {
 
 extend({ NormalColorMaterial });
 
-export default function Text({ text, textOptions = {}, withGlow = false }) {
-	const mergedTextOptions = { ...defaultTextOptions, ...textOptions };
+export default function Text({ text, textOptions = {}, withGlow = false, ...rest }) {
+	const mergedTextOptions = { ...defaultTextOptions, ...textOptions, ...rest };
 
 	return (
 		<DreiText3d font={DEFAULT_FONT} {...mergedTextOptions}>

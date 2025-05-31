@@ -5,7 +5,7 @@ import { Zones } from "@pixel/utils/zones.js";
 import { OrbitControls } from "@react-three/drei";
 import { useFrame, useThree } from "@react-three/fiber";
 import { useRef } from "react";
-import { BackSide } from "three/webgpu";
+import { BackSide } from "three";
 import { Sun } from "./Celestials";
 import Terrain from "./Terrain";
 
@@ -62,6 +62,7 @@ export default function Environment() {
 	const { camera, scene } = useThree();
 	const controlsRef = useRef();
 	const setGamePhase = useGameStateManager((s) => s.setGamePhase);
+	const pinMeshRef = useRef(null);
 
 	useCameraAnimation(Zones.initial.targetZoomFocus, Zones.initial.cameraLookAt, 3, () => {
 		setGamePhase(GameStates.MENU);
@@ -82,7 +83,7 @@ export default function Environment() {
 		<>
 			<Lights />
 			<DynamicBackground />
-			<Sun scene={scene} />
+			<Sun />
 			<OrbitControls
 				ref={controlsRef}
 				enableDamping
