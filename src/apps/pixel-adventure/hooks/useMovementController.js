@@ -12,6 +12,7 @@ export default function useMovementController({ onMove, onJump, actions, complet
   const velocityY = useRef(0);
   const isOnGround = useRef(true);
   const currentAnim = useRef(null);
+  const lastDir = useRef(new Vector3(0, 0, 1)); // default forward facing
 
   const play = useCallback(
     (name) => {
@@ -52,6 +53,11 @@ export default function useMovementController({ onMove, onJump, actions, complet
     if (keys.current.get("KeyA")) direction.current.x -= 1;
     if (keys.current.get("KeyD")) direction.current.x += 1;
 
+    if (direction.current.lengthSq() > 0) {
+      direction.current.normalize();
+      lastDir.current.copy(direction.current);  // remember last input dir
+    }
+
     direction.current.normalize();
     velocity.current.copy(direction.current).multiplyScalar(delta);
 
@@ -72,10 +78,8 @@ export default function useMovementController({ onMove, onJump, actions, complet
 
     // Movement logic
     if (canEnterZone(nextX, nextZ, completedZone)) {
-      if (onMove) onMove(velocity.current, direction.current);
+      if (onMove) onMove(velocity.current, lastDir.current);
     }
-
-    // if (onMove) onMove(velocity.current, direction.current);
 
     // Animation control
     if (!isOnGround.current) {
