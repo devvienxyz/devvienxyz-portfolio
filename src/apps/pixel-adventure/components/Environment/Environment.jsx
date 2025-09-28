@@ -59,20 +59,14 @@ function Lights() {
   );
 }
 
-export default function Environment() {
-  const { camera, scene } = useThree();
+export default function Environment({ navigationTarget }) {
+  const { scene } = useThree();
   const controlsRef = useRef();
   const setGamePhase = useGameStateManager((s) => s.setGamePhase);
-  const pinMeshRef = useRef(null);
 
   useCameraAnimation(Zones.initial.targetZoomFocus, Zones.initial.cameraLookAt, 3, () => {
     setGamePhase(GameStates.MENU);
   });
-
-  // useEffect(() => {
-  // 	camera.position.set(-3, 2, 5);
-  // 	camera.lookAt(0, 0, 0);
-  // }, [camera]);
 
   useFrame(() => {
     if (controlsRef.current) {
@@ -96,7 +90,7 @@ export default function Environment() {
         maxPolarAngle={Math.PI / 2}
       />
       <PixelMap scene={scene} />
-      <Avatar />
+      <Avatar navigationTarget={navigationTarget} />
 
       {/* todo: out of bounds */}
       <NPC

@@ -6,7 +6,7 @@ import { Cube3dLoader } from "@pixel/components/Loaders";
 import useGameStateManager, { GameStates } from "@pixel/state/game-store";
 import { getConfig } from "@shared/config/runtime";
 
-export default function App() {
+export default function App({ navigationTarget }) {
   const { isDebug } = getConfig();
   const completedZone = useGameStateManager(({ completedZone }) => completedZone);
   const [showGrid, setShowGrid] = useState(false);
@@ -19,7 +19,7 @@ export default function App() {
 
       <Canvas camera={{ fov: 50, near: 0.1, far: 1000 }}>
         <Suspense fallback={<Cube3dLoader />}>
-          <Environment />
+          <Environment navigationTarget={navigationTarget} />
           {showMenu && <LazyNavBackdrop />}
           {isDebug && showGrid && <GridGuide showMarkers={showMarkers} />}
         </Suspense>
