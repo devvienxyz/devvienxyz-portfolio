@@ -1,0 +1,544 @@
+[
+  {
+    "q": 0,
+    "r": -2,
+    "isClickable": false,
+    "isWalkable": true,
+    "isUnlocked": true,
+    "models": [
+      {
+        "name": "unit-tree",
+        "rotationY": 0,
+        "scale": 1.5
+      },
+      {
+        "name": "unit-tree",
+        "rotationY": 0,
+        "scale": 1
+      },
+      {
+        "name": "unit-tree",
+        "rotationY": 0,
+        "scale": 1
+      },
+      {
+        "name": "unit-tree",
+        "rotationY": 0,
+        "scale": 1.5
+      },
+      {
+        "name": "unit-tree",
+        "rotationY": 0,
+        "scale": 1
+      }
+    ]
+  },
+  {
+    "q": -2,
+    "r": 1,
+    "isClickable": false,
+    "isWalkable": true,
+    "isUnlocked": true,
+    "models": [
+      {
+        "name": "unit-ship-large",
+        "rotationY": -5,
+        "scale": 1,
+        "offset": [0, 0.1, 0]
+      },
+      {
+        "name": "water",
+        "rotationY": 0,
+        "scale": 1
+      },
+      {
+        "name": "building-port",
+        "rotationY": 90,
+        "scale": 1
+      }
+    ]
+  },
+  {
+    "q": 2,
+    "r": -2,
+    "isClickable": false,
+    "isWalkable": true,
+    "isUnlocked": true,
+    "models": [
+      {
+        "name": "unit-ship",
+        "rotationY": 0,
+        "scale": 1,
+        "offset": [0, 0.1, 0]
+      },
+      {
+        "name": "water",
+        "rotationY": 0,
+        "scale": 1
+      },
+      {
+        "name": "building-mine",
+        "rotationY": 45,
+        "scale": 1
+      }
+    ]
+  },
+  {
+    "q": 1,
+    "r": 0,
+    "isClickable": false,
+    "isWalkable": true,
+    "isUnlocked": true,
+    "models": [
+      {
+        "name": "building-walls",
+        "rotationY": 0,
+        "scale": 1,
+        "offset": [0, 0.2, 0]
+      },
+      {
+        "name": "dirt",
+        "rotationY": 0,
+        "scale": 1,
+        "offset": [0, 0.1, 0]
+      },
+      {
+        "name": "dirt",
+        "rotationY": 0,
+        "scale": 1
+      },
+      {
+        "name": "river-straight",
+        "rotationY": 0,
+        "scale": 1
+      },
+      {
+        "name": "grass",
+        "rotationY": 0,
+        "scale": 1
+      }
+    ]
+  },
+  {
+    "q": 1,
+    "r": -2,
+    "isClickable": false,
+    "isWalkable": true,
+    "isUnlocked": true,
+    "models": [
+      {
+        "name": "water",
+        "rotationY": 0,
+        "scale": 1
+      },
+      {
+        "name": "building-archery",
+        "rotationY": 45,
+        "scale": 1
+      },
+      {
+        "name": "water",
+        "rotationY": 0,
+        "scale": 1
+      }
+    ]
+  },
+  {
+    "q": -1,
+    "r": 1,
+    "isClickable": false,
+    "isWalkable": true,
+    "isUnlocked": true,
+    "models": [
+      {
+        "name": "river-straight",
+        "rotationY": 0,
+        "scale": 1
+      },
+      {
+        "name": "river-corner",
+        "rotationY": 0,
+        "scale": 1
+      }
+    ]
+  },
+  {
+    "q": 0,
+    "r": 1,
+    "isClickable": false,
+    "isWalkable": true,
+    "isUnlocked": true,
+    "models": [
+      {
+        "name": "river-corner",
+        "rotationY": -135.1,
+        "scale": 1
+      },
+      {
+        "name": "grass-forest",
+        "rotationY": 0,
+        "scale": 1
+      }
+    ]
+  },
+  {
+    "q": 1,
+    "r": 1,
+    "isClickable": false,
+    "isWalkable": true,
+    "isUnlocked": true,
+    "models": [
+      {
+        "name": "river-straight",
+        "rotationY": 0,
+        "scale": 1
+      },
+      {
+        "name": "unit-mansion",
+        "rotationY": 0,
+        "scale": 1,
+        "offset": [0, 0.2, 0]
+      },
+      {
+        "name": "building-sheep",
+        "rotationY": 0,
+        "scale": 1
+      },
+      {
+        "name": "building-castle",
+        "rotationY": 0,
+        "scale": 1
+      },
+      {
+        "name": "grass",
+        "rotationY": 0,
+        "scale": 1
+      }
+    ]
+  },
+  {
+    "q": 2,
+    "r": 0,
+    "isClickable": false,
+    "isWalkable": true,
+    "isUnlocked": true,
+    "models": [
+      {
+        "name": "river-corner",
+        "rotationY": 0,
+        "scale": 1
+      },
+      {
+        "name": "bridge",
+        "rotationY": -90.1,
+        "scale": 1
+      },
+      {
+        "name": "dirt-lumber",
+        "rotationY": 0,
+        "scale": 1
+      },
+      {
+        "name": "dirt-lumber",
+        "rotationY": 0,
+        "scale": 1
+      }
+    ]
+  },
+  {
+    "q": -2,
+    "r": 2,
+    "isClickable": false,
+    "isWalkable": true,
+    "isUnlocked": true,
+    "models": [
+      {
+        "name": "water-rocks",
+        "rotationY": 0,
+        "scale": 1
+      },
+      {
+        "name": "water-rocks",
+        "rotationY": 0,
+        "scale": 1
+      }
+    ]
+  },
+  {
+    "q": 0,
+    "r": 2,
+    "isClickable": false,
+    "isWalkable": true,
+    "isUnlocked": true,
+    "models": [
+      {
+        "name": "water",
+        "rotationY": 0,
+        "scale": 1
+      },
+      {
+        "name": "unit-mill",
+        "rotationY": 45,
+        "scale": 1
+      },
+      {
+        "name": "water",
+        "rotationY": 0,
+        "scale": 1
+      }
+    ]
+  },
+  {
+    "q": 2,
+    "r": -1,
+    "isClickable": false,
+    "isWalkable": true,
+    "isUnlocked": true,
+    "models": [
+      {
+        "name": "grass-hill",
+        "rotationY": 0,
+        "scale": 1
+      },
+      {
+        "name": "stone-mountain",
+        "rotationY": 0,
+        "scale": 1
+      },
+      {
+        "name": "grass",
+        "rotationY": 0,
+        "scale": 1
+      },
+      {
+        "name": "path-square-end",
+        "rotationY": 0,
+        "scale": 1,
+        "offset": [0, 0.2, 0]
+      }
+    ]
+  },
+  {
+    "q": 1,
+    "r": -1,
+    "isClickable": false,
+    "isWalkable": true,
+    "isUnlocked": true,
+    "models": [
+      {
+        "name": "building-tower",
+        "rotationY": 0,
+        "scale": 1
+      },
+      {
+        "name": "grass",
+        "rotationY": 0,
+        "scale": 1
+      },
+      {
+        "name": "grass",
+        "rotationY": 0,
+        "scale": 1
+      },
+      {
+        "name": "path-straight",
+        "rotationY": 0,
+        "scale": 1,
+        "offset": [0, 0.2, 0]
+      },
+      {
+        "name": "grass",
+        "rotationY": 0,
+        "scale": 1
+      },
+      {
+        "name": "path-corner",
+        "rotationY": 135.1,
+        "scale": 1,
+        "offset": [0, 0.2, 0]
+      }
+    ]
+  },
+  {
+    "q": -1,
+    "r": 0,
+    "isClickable": false,
+    "isWalkable": true,
+    "isUnlocked": true,
+    "models": [
+      {
+        "name": "building-mill",
+        "rotationY": 45,
+        "scale": 1,
+        "offset": [0, 0.2, 0]
+      },
+      {
+        "name": "building-market",
+        "rotationY": 0,
+        "scale": 1
+      },
+      {
+        "name": "grass",
+        "rotationY": 0,
+        "scale": 1
+      },
+      {
+        "name": "path-intersectionF",
+        "rotationY": 0,
+        "scale": 1,
+        "offset": [0, 0.2, 0]
+      },
+      {
+        "name": "grass",
+        "rotationY": 0,
+        "scale": 1
+      },
+      {
+        "name": "path-straight",
+        "rotationY": 0,
+        "scale": 1,
+        "offset": [0, 0.2, 0]
+      },
+      {
+        "name": "path-start",
+        "rotationY": 135.1,
+        "scale": 1,
+        "offset": [0, 0.2, 0]
+      }
+    ]
+  },
+  {
+    "q": -1,
+    "r": -1,
+    "isClickable": false,
+    "isWalkable": true,
+    "isUnlocked": true,
+    "models": [
+      {
+        "name": "building-farm",
+        "rotationY": 0,
+        "scale": 1
+      },
+      {
+        "name": "unit-tower",
+        "rotationY": 0,
+        "scale": 1
+      },
+      {
+        "name": "building-village",
+        "rotationY": 45,
+        "scale": 1
+      }
+    ]
+  },
+  {
+    "q": 3,
+    "r": -1,
+    "isClickable": false,
+    "isWalkable": true,
+    "isUnlocked": true,
+    "models": [
+      {
+        "name": "building-cabin",
+        "rotationY": 0,
+        "scale": 1
+      }
+    ]
+  },
+  {
+    "q": -1,
+    "r": 2,
+    "isClickable": false,
+    "isWalkable": true,
+    "isUnlocked": true,
+    "models": [
+      {
+        "name": "grass-hill",
+        "rotationY": 0,
+        "scale": 1
+      },
+      {
+        "name": "building-dock",
+        "rotationY": 90,
+        "scale": 1
+      }
+    ]
+  },
+  {
+    "q": 1,
+    "r": 2,
+    "isClickable": false,
+    "isWalkable": true,
+    "isUnlocked": true,
+    "models": [
+      {
+        "name": "building-wizard-tower",
+        "rotationY": 0,
+        "scale": 1
+      }
+    ]
+  },
+  {
+    "q": -2,
+    "r": 0,
+    "isClickable": false,
+    "isWalkable": true,
+    "isUnlocked": true,
+    "models": [
+      {
+        "name": "grass",
+        "rotationY": 0,
+        "scale": 1
+      },
+      {
+        "name": "grass-forest",
+        "rotationY": 0,
+        "scale": 1
+      }
+    ]
+  },
+  {
+    "q": 0,
+    "r": -1,
+    "isClickable": false,
+    "isWalkable": true,
+    "isUnlocked": true,
+    "models": [
+      {
+        "name": "grass",
+        "rotationY": 0,
+        "scale": 1
+      },
+      {
+        "name": "grass",
+        "rotationY": 0,
+        "scale": 1
+      }
+    ]
+  },
+  {
+    "q": 0,
+    "r": 0,
+    "isClickable": false,
+    "isWalkable": true,
+    "isUnlocked": true,
+    "models": [
+      {
+        "name": "grass",
+        "rotationY": 0,
+        "scale": 1
+      },
+      {
+        "name": "path-corner",
+        "rotationY": 0,
+        "scale": 1,
+        "offset": [0, 0.2, 0]
+      },
+      {
+        "name": "grass-forest",
+        "rotationY": 0,
+        "scale": 1
+      }
+    ]
+  }
+]
