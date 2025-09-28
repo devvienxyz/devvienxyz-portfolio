@@ -2,7 +2,14 @@ import { useFrame, useThree } from "@react-three/fiber";
 import { useState, useEffect, useRef } from "react";
 import { AnimationMixer } from "three";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
-import Clickable3DObject from "./Clickable-3d-Object";
+
+// helper: axial to world space conversion for hex tiles
+// adjust size based on your hex tile dimensions
+function hexToWorld(q, r, size = 1) {
+  const x = size * (Math.sqrt(3) * q + (Math.sqrt(3) / 2) * r);
+  const z = size * (3 / 2) * r;
+  return [x, 0, z]; // y=0 since terrain is flat
+}
 
 export const loadModel = (scene, loader, mixers, modelPath, { position, scale = 1, rotationY = 0 }) => {
   loader.current.load(
@@ -30,97 +37,54 @@ export const loadModel = (scene, loader, mixers, modelPath, { position, scale = 
   );
 };
 
-const loadGLTFModel = (path) =>
-  new Promise((resolve, reject) => {
-    const loader = new GLTFLoader();
-    loader.load(
-      path,
-      (gltf) => resolve(gltf),
-      undefined,
-      (err) => reject(err),
-    );
-  });
-
-export default function MapBuilder({ mapObjects, modelPathPrefix }) {
+export default function MapBuilder({ hexMap, modelPathPrefix }) {
   const { scene } = useThree();
   const loader = useRef(new GLTFLoader());
   const mixers = useRef([]);
-  const [loadedModels, setLoadedModels] = useState([]);
+  const [loadedTiles, setLoadedTiles] = useState([]);
 
   useEffect(() => {
-    // Render map when the component mounts
-    for (const { name, ...rest } of mapObjects) {
-      loadModel(scene, loader, mixers, `${modelPathPrefix}/${name}.glb`, rest);
+    const tileModels = [];
+
+    for (const tile of hexMap) {
+      const worldPos = hexToWorld(tile.q, tile.r, 1); // 1 = hex size
+      for (const modelDef of tile.models) {
+        const { name, scale = 1, rotationY = 0 } = modelDef;
+        const modelPath = `${modelPathPrefix}/${name}.glb`;
+
+        loadModel(scene, loader, mixers, modelPath, {
+          position: worldPos,
+          scale,
+          rotationY,
+        });
+
+        tileModels.push({
+          tile,
+          name,
+          position: worldPos,
+          onClick: tile.isClickable ? () => console.log("Clicked:", tile) : null,
+        });
+      }
     }
 
+    setLoadedTiles(tileModels);
+
     return () => {
-      // Clean up any mixers when the component unmounts
-      for (const mixer of mixers.current) {
-        mixer.stopAllAction();
-      }
+      for (const mixer of mixers.current) mixer.stopAllAction();
       mixers.current = [];
+      setLoadedTiles([]);
     };
-  }, [scene, mapObjects, modelPathPrefix]);
-
-  // useEffect(() => {
-  //   let isMounted = true
-
-  //   const loadModels = async () => {
-  //     const results = await Promise.allSettled(
-  //       mapObjects.map(async ({ name, position, scale = 1, rotationY = 0, onClick }) => {
-  //         try {
-  //           const gltf = await loadGLTFModel(`${modelPathPrefix}/${name}.glb`)
-  //           const model = gltf.scene
-
-  //           model.position.set(...position)
-  //           model.scale.setScalar(scale)
-  //           model.rotation.y = rotationY
-
-  //           let mixer = null
-  //           if (name.includes('mill') && gltf.animations.length > 0) {
-  //             mixer = new AnimationMixer(model)
-  //             mixer.clipAction(gltf.animations[0])?.play()
-  //             mixers.current.push(mixer)
-  //           }
-
-  //           return { name, model, onClick, position }
-  //         } catch (err) {
-  //           console.error(`Failed to load ${name}:`, err)
-  //           return null
-  //         }
-  //       })
-  //     )
-
-  //     if (!isMounted) return
-
-  //     const successfulModels = results
-  //       .filter((res) => res.status === 'fulfilled' && res.value)
-  //       .map((res) => res.value)
-
-  //     setLoadedModels(successfulModels)
-  //   }
-
-  //   loadModels()
-
-  //   return () => {
-  //     isMounted = false
-  //     mixers.current.forEach((m) => m.stopAllAction())
-  //     mixers.current = []
-  //     setLoadedModels([])
-  //   }
-  // }, [mapObjects, modelPathPrefix])
+  }, [scene, hexMap, modelPathPrefix]);
 
   useFrame((_, delta) => {
     for (const mixer of mixers.current) mixer.update(delta);
   });
 
-  // return null;
-
   return (
     <>
-      {loadedModels.map(({ model, onClick, position }, i) => (
-        <Clickable3DObject key={i} object={model} onClick={onClick} position={position} />
-      ))}
+      {loadedTiles.map(({ position, onClick }, i) =>
+        onClick ? <Clickable3DObject key={i} onClick={onClick} position={position} /> : null,
+      )}
     </>
   );
 }
