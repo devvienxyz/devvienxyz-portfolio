@@ -1,8 +1,6 @@
 import { Canvas } from "@react-three/fiber";
 import { Suspense, useState } from "react";
-import DebugPanel from "@pixel/components/Controls/Debug-Panel";
-import GridGuide from "@pixel/components/Controls/Grid-Guide";
-import LazyNavBackdrop from "@pixel/components/Controls/Lazy-Nav";
+import { DebugPanel, GridGuide, LazyNavBackdrop } from "@pixel/components/Controls";
 import { Environment } from "@pixel/components/Environment";
 import { Cube3dLoader } from "@pixel/components/Loaders";
 import useGameStateManager, { GameStates } from "@pixel/state/game-store";
