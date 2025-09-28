@@ -2,8 +2,9 @@ import { OrbitControls } from "@react-three/drei";
 import { useFrame, useThree } from "@react-three/fiber";
 import { useRef } from "react";
 import { BackSide } from "three";
-import Avatar from "@pixel/components/Avatar/Avatar";
+import { Avatar, NPC } from "@pixel/components/Avatar";
 import { useCameraAnimation } from "@pixel/hooks";
+import Avatars from "@pixel/constants/avatar-attributes";
 import useGameStateManager, { GameStates } from "@pixel/state/game-store.js";
 import { Zones } from "@pixel/utils/zones.js";
 import { Sun } from "./Celestials";
@@ -96,6 +97,25 @@ export default function Environment() {
       />
       <PixelMap scene={scene} />
       <Avatar />
+
+      {/* todo: out of bounds */}
+      <NPC
+        model={Avatars.fem_a}
+        patrolPoints={[
+          [2.5, 0.2, 1.1],
+          [1.5, 0.2, 2.0],
+          [3.0, 0.2, 2.5],
+        ]}
+        speed={0.2}
+      />
+      <NPC
+        model={Avatars.mal_a}
+        patrolPoints={[
+          [2, 0.2, -1],
+          [2, 0.2, -3],
+        ]}
+        speed={0.2}
+      />
     </>
   );
 }
