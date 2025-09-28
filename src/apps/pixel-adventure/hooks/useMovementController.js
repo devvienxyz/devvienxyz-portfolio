@@ -1,9 +1,9 @@
 import { useCallback, useEffect, useRef } from "react";
 import { Vector3 } from "three";
-import { useThree } from "@react-three/fiber";
 import AvatarActions, { JUMP_VELOCITY } from "../constants/avatar-actions.js";
 import { GRAVITY, GROUND_LEVEL } from "../constants/terrain-misc.js";
 import canEnterZone from "../utils/zones.js";
+import { useThree } from "@react-three/fiber";
 
 export default function useMovementController({ onMove, onJump, actions, completedZone = 0 }) {
   const { camera } = useThree();
@@ -84,9 +84,10 @@ export default function useMovementController({ onMove, onJump, actions, complet
     }
 
     // Movement logic
-    if (canEnterZone(nextX, nextZ, completedZone)) {
-      onMove?.(velocity.current, lastDir.current);
-    }
+    // if (canEnterZone(nextX, nextZ, completedZone)) {
+    //   onMove?.(velocity.current, lastDir.current);
+    // }
+    onMove?.(velocity.current, lastDir.current);
 
     // Animation control
     if (!isOnGround.current) {
