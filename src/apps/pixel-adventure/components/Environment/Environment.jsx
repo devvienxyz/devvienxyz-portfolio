@@ -1,11 +1,11 @@
-import Avatar from "@pixel/components/Avatar/Avatar";
-import { useCameraAnimation } from "@pixel/hooks";
-import useGameStateManager, { GameStates } from "@pixel/state/game-store.js";
-import { Zones } from "@pixel/utils/zones.js";
 import { OrbitControls } from "@react-three/drei";
 import { useFrame, useThree } from "@react-three/fiber";
 import { useRef } from "react";
 import { BackSide } from "three";
+import Avatar from "@pixel/components/Avatar/Avatar";
+import { useCameraAnimation } from "@pixel/hooks";
+import useGameStateManager, { GameStates } from "@pixel/state/game-store.js";
+import { Zones } from "@pixel/utils/zones.js";
 import { Sun } from "./Celestials";
 import Terrain from "./Terrain";
 
