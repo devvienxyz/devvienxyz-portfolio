@@ -13,7 +13,11 @@ export default function Avatar() {
   const controller = useMovementController({
     onMove: (vel, dir) => {
       group.current.position.add(vel);
-      group.current.rotation.y = Math.atan2(dir.x, dir.z);
+
+      // rotation will use the last known direction, even after keys are released
+      if (dir.lengthSq() > 0) {
+        group.current.rotation.y = Math.atan2(dir.x, dir.z);
+      }
     },
     actions,
   });
