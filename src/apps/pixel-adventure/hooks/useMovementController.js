@@ -1,18 +1,24 @@
 import { useCallback, useEffect, useRef } from "react";
 import { Vector3 } from "three";
-import AvatarActions from "../constants/avatar-actions.js";
-import { JUMP_VELOCITY } from "../constants/avatar-actions.js";
+import { useThree } from "@react-three/fiber";
+import AvatarActions, { JUMP_VELOCITY } from "../constants/avatar-actions.js";
 import { GRAVITY, GROUND_LEVEL } from "../constants/terrain-misc.js";
 import canEnterZone from "../utils/zones.js";
 
 export default function useMovementController({ onMove, onJump, actions, completedZone = 0 }) {
+  const { camera } = useThree();
+
+  if (!camera) {
+    throw new Error("useMovementController: camera is required but was not provided");
+  }
+
   const keys = useRef(new Map());
   const direction = useRef(new Vector3());
   const velocity = useRef(new Vector3());
   const velocityY = useRef(0);
   const isOnGround = useRef(true);
   const currentAnim = useRef(null);
-  const lastDir = useRef(new Vector3(0, 0, 1)); // default forward facing
+  const lastDir = useRef(new Vector3(0, 0, 1));
 
   const play = useCallback(
     (name) => {
@@ -32,7 +38,7 @@ export default function useMovementController({ onMove, onJump, actions, complet
       if (e.code === "Space" && isOnGround.current) {
         velocityY.current = JUMP_VELOCITY;
         isOnGround.current = false;
-        play("jump");
+        play(AvatarActions.JUMP);
         onJump?.();
       }
     };
@@ -48,6 +54,7 @@ export default function useMovementController({ onMove, onJump, actions, complet
 
   const update = (delta, position) => {
     direction.current.set(0, 0, 0);
+
     if (keys.current.get("KeyW")) direction.current.z -= 1;
     if (keys.current.get("KeyS")) direction.current.z += 1;
     if (keys.current.get("KeyA")) direction.current.x -= 1;
@@ -55,7 +62,7 @@ export default function useMovementController({ onMove, onJump, actions, complet
 
     if (direction.current.lengthSq() > 0) {
       direction.current.normalize();
-      lastDir.current.copy(direction.current);  // remember last input dir
+      lastDir.current.copy(direction.current); // remember last input dir
     }
 
     direction.current.normalize();
@@ -78,7 +85,7 @@ export default function useMovementController({ onMove, onJump, actions, complet
 
     // Movement logic
     if (canEnterZone(nextX, nextZ, completedZone)) {
-      if (onMove) onMove(velocity.current, lastDir.current);
+      onMove?.(velocity.current, lastDir.current);
     }
 
     // Animation control
