@@ -10,22 +10,22 @@ import { Suspense, useState } from "react";
 const isDebug = process.env.NODE_ENV !== "production";
 
 export default function App() {
-	const completedZone = useGameStateManager(({ completedZone }) => completedZone);
-	const [showGrid, setShowGrid] = useState(false);
-	const [showMarkers, setShowMarkers] = useState(false);
-	const showMenu = completedZone === 4;
+  const completedZone = useGameStateManager(({ completedZone }) => completedZone);
+  const [showGrid, setShowGrid] = useState(false);
+  const [showMarkers, setShowMarkers] = useState(false);
+  const showMenu = completedZone === 4;
 
-	return (
-		<div className="w-full h-screen">
-			{isDebug && <DebugPanel {...{ isDebug, showGrid, setShowGrid, showMarkers, setShowMarkers }} />}
+  return (
+    <div className="w-full h-screen">
+      {isDebug && <DebugPanel {...{ isDebug, showGrid, setShowGrid, showMarkers, setShowMarkers }} />}
 
-			<Canvas camera={{ fov: 50, near: 0.1, far: 1000 }}>
-				<Suspense fallback={<Cube3dLoader />}>
-					<Environment />
-					{showMenu && <LazyNavBackdrop />}
-					{isDebug && showGrid && <GridGuide showMarkers={showMarkers} />}
-				</Suspense>
-			</Canvas>
-		</div>
-	);
+      <Canvas camera={{ fov: 50, near: 0.1, far: 1000 }}>
+        <Suspense fallback={<Cube3dLoader />}>
+          <Environment />
+          {showMenu && <LazyNavBackdrop />}
+          {isDebug && showGrid && <GridGuide showMarkers={showMarkers} />}
+        </Suspense>
+      </Canvas>
+    </div>
+  );
 }

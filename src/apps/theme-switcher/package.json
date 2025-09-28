@@ -1,13 +1,13 @@
 {
-	"name": "@themer",
-	"type": "module",
-	"version": "1.0.0",
-	"private": true,
-	"scripts": {
-		"test": "jest --watchAll"
-	},
-	"dependencies": {
-		"@shared": "workspace:*"
-	},
-	"license": "MIT"
+  "name": "@themer",
+  "type": "module",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "test": "jest --watchAll"
+  },
+  "dependencies": {
+    "@shared": "workspace:*"
+  },
+  "license": "MIT"
 }

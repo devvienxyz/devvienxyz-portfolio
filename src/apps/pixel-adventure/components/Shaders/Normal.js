@@ -2,10 +2,10 @@ import { shaderMaterial } from "@react-three/drei";
 import { Vector3 } from "three/webgpu";
 
 const NormalColorMaterial = shaderMaterial(
-	{
-		lightDirection: new Vector3(0.5, 1.0, 0.8),
-	},
-	`
+  {
+    lightDirection: new Vector3(0.5, 1.0, 0.8),
+  },
+  `
     varying vec3 vNormal;
     varying vec3 vViewPosition;
 
@@ -16,7 +16,7 @@ const NormalColorMaterial = shaderMaterial(
       gl_Position = projectionMatrix * mvPosition;
     }
   `,
-	`
+  `
     varying vec3 vNormal;
     varying vec3 vViewPosition;
 

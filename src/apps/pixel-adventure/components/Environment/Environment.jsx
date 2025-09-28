@@ -11,7 +11,7 @@ import Terrain from "./Terrain";
 
 // Shader for background gradient
 const DUAL_GRADIENT = {
-	vertexShader: `
+  vertexShader: `
     varying vec3 vWorldPosition;
     void main() {
       vec4 worldPosition = modelMatrix * vec4(position, 1.0);
@@ -19,7 +19,7 @@ const DUAL_GRADIENT = {
       gl_Position = projectionMatrix * viewMatrix * worldPosition;
     }
   `,
-	fragmentShader: `
+  fragmentShader: `
     varying vec3 vWorldPosition;
     void main() {
       vec3 viewDir = normalize(vWorldPosition);
@@ -34,70 +34,70 @@ const DUAL_GRADIENT = {
 };
 
 const DynamicBackground = () => {
-	const materialRef = useRef();
+  const materialRef = useRef();
 
-	return (
-		<mesh scale={[50, 50, 50]}>
-			<sphereGeometry args={[1, 32, 32]} />
-			<shaderMaterial
-				ref={materialRef}
-				vertexShader={DUAL_GRADIENT.vertexShader}
-				fragmentShader={DUAL_GRADIENT.fragmentShader}
-				side={BackSide}
-			/>
-		</mesh>
-	);
+  return (
+    <mesh scale={[50, 50, 50]}>
+      <sphereGeometry args={[1, 32, 32]} />
+      <shaderMaterial
+        ref={materialRef}
+        vertexShader={DUAL_GRADIENT.vertexShader}
+        fragmentShader={DUAL_GRADIENT.fragmentShader}
+        side={BackSide}
+      />
+    </mesh>
+  );
 };
 
 function Lights() {
-	return (
-		<>
-			<directionalLight position={[2, 2, 5]} intensity={1} />
-			<ambientLight intensity={1.5} />
-		</>
-	);
+  return (
+    <>
+      <directionalLight position={[2, 2, 5]} intensity={1} />
+      <ambientLight intensity={1.5} />
+    </>
+  );
 }
 
 export default function Environment() {
-	const { camera, scene } = useThree();
-	const controlsRef = useRef();
-	const setGamePhase = useGameStateManager((s) => s.setGamePhase);
-	const pinMeshRef = useRef(null);
+  const { camera, scene } = useThree();
+  const controlsRef = useRef();
+  const setGamePhase = useGameStateManager((s) => s.setGamePhase);
+  const pinMeshRef = useRef(null);
 
-	useCameraAnimation(Zones.initial.targetZoomFocus, Zones.initial.cameraLookAt, 3, () => {
-		setGamePhase(GameStates.MENU);
-	});
+  useCameraAnimation(Zones.initial.targetZoomFocus, Zones.initial.cameraLookAt, 3, () => {
+    setGamePhase(GameStates.MENU);
+  });
 
-	// useEffect(() => {
-	// 	camera.position.set(-3, 2, 5);
-	// 	camera.lookAt(0, 0, 0);
-	// }, [camera]);
+  // useEffect(() => {
+  // 	camera.position.set(-3, 2, 5);
+  // 	camera.lookAt(0, 0, 0);
+  // }, [camera]);
 
-	useFrame(() => {
-		if (controlsRef.current) {
-			controlsRef.current.update();
-		}
-	});
+  useFrame(() => {
+    if (controlsRef.current) {
+      controlsRef.current.update();
+    }
+  });
 
-	return (
-		<>
-			<Lights />
-			<DynamicBackground />
-			<Sun />
-			<OrbitControls
-				ref={controlsRef}
-				enableDamping
-				enablePan
-				screenSpacePanning={false}
-				keyPanSpeed={100}
-				maxDistance={10}
-				minDistance={2}
-				maxPolarAngle={Math.PI / 2}
-			/>
-			<Terrain scene={scene} />
-			<Avatar />
-		</>
-	);
+  return (
+    <>
+      <Lights />
+      <DynamicBackground />
+      <Sun />
+      <OrbitControls
+        ref={controlsRef}
+        enableDamping
+        enablePan
+        screenSpacePanning={false}
+        keyPanSpeed={100}
+        maxDistance={10}
+        minDistance={2}
+        maxPolarAngle={Math.PI / 2}
+      />
+      <Terrain scene={scene} />
+      <Avatar />
+    </>
+  );
 }
 
 export { Lights };

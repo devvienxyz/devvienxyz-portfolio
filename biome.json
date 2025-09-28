@@ -1,21 +1,21 @@
 {
-	"formatter": {
-		"enabled": true,
-		"indentStyle": "tab",
-		"indentWidth": 2,
-		"lineWidth": 120
-	},
-	"files": {
-		"ignore": [
-			"**/node_modules/**",
-			"**/dist/**",
-			"**/dist-root/**",
-			"**/build/**",
-			"**/.git/**",
-			"**/.github/**",
-			"**/.vscode/**",
-			"**/.idea/**",
-			"**/.DS_Store/**"
-		]
-	}
+  "formatter": {
+    "enabled": true,
+    "indentStyle": "space",
+    "indentWidth": 2,
+    "lineWidth": 120
+  },
+  "files": {
+    "ignore": [
+      "**/node_modules/**",
+      "**/dist/**",
+      "**/dist-root/**",
+      "**/build/**",
+      "**/.git/**",
+      "**/.github/**",
+      "**/.vscode/**",
+      "**/.idea/**",
+      "**/.DS_Store/**"
+    ]
+  }
 }

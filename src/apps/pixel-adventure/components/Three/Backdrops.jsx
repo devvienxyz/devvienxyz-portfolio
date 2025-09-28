@@ -4,15 +4,15 @@ import { useEffect, useRef } from "react";
 import { Color, NormalBlending } from "three";
 
 const GradientMaterial = shaderMaterial(
-	{ uColor: new Color(0x000000), uOpacity: 0.5 }, // Add uOpacity uniform
-	`
+  { uColor: new Color(0x000000), uOpacity: 0.5 }, // Add uOpacity uniform
+  `
     varying vec2 vUv;
     void main() {
       vUv = uv;
       gl_Position = vec4(position, 1.0);
     }
   `,
-	`
+  `
     varying vec2 vUv;
     uniform vec3 uColor;
     uniform float uOpacity;
@@ -42,34 +42,34 @@ extend({ GradientMaterial });
 // }
 
 export default function FullScreenGradientBackdrop() {
-	const backdropRef = useRef();
-	useEffect(() => {
-		if (backdropRef.current) {
-			backdropRef.current.layers.set(1); // Set backdrop to layer 1
-		}
-	}, []);
+  const backdropRef = useRef();
+  useEffect(() => {
+    if (backdropRef.current) {
+      backdropRef.current.layers.set(1); // Set backdrop to layer 1
+    }
+  }, []);
 
-	return (
-		<ScreenQuad
-			ref={backdropRef}
-			renderOrder={-10}
-			// transparent={true}
-			// depthWrite={false}
-			// depthTest={false}
-			// uOpacity={0.3}
-			// blending={NormalBlending}
-		>
-			{/* <gradientMaterial /> */}
-			{/* <gradientMaterial uColor={new Color(0xff0000)} /> */}
-			{/* <gradientMaterial transparent depthWrite={false} depthTest={false} uOpacity={0.3} blending={NormalBlending} /> */}
-			<gradientMaterial
-				transparent
-				uColor={new Color(0xff0000)}
-				depthWrite={false}
-				depthTest={false}
-				uOpacity={0.3}
-				blending={NormalBlending}
-			/>
-		</ScreenQuad>
-	);
+  return (
+    <ScreenQuad
+      ref={backdropRef}
+      renderOrder={-10}
+      // transparent={true}
+      // depthWrite={false}
+      // depthTest={false}
+      // uOpacity={0.3}
+      // blending={NormalBlending}
+    >
+      {/* <gradientMaterial /> */}
+      {/* <gradientMaterial uColor={new Color(0xff0000)} /> */}
+      {/* <gradientMaterial transparent depthWrite={false} depthTest={false} uOpacity={0.3} blending={NormalBlending} /> */}
+      <gradientMaterial
+        transparent
+        uColor={new Color(0xff0000)}
+        depthWrite={false}
+        depthTest={false}
+        uOpacity={0.3}
+        blending={NormalBlending}
+      />
+    </ScreenQuad>
+  );
 }
