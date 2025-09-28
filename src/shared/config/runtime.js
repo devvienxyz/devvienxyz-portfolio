@@ -19,8 +19,8 @@ function buildConfig() {
     isDebug: !isProd && import.meta.env.VITE_ENABLE_DEBUG !== "false",
 
     // public values
-    appBaseUrl: getEnv("VITE_APP_BASE_URL"),
-    pwaName: getEnv("VITE_PWA_NAME"),
+    // appBaseUrl: getEnv("VITE_APP_BASE_URL"),
+    // pwaName: getEnv("VITE_PWA_NAME"),
   };
 }
 
