@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { useEffect, useRef } from "react";
-import Text from "../Three";
+import { Text } from "../Three";
 
 function NavItem({ text, position, isActive, scale = 0.5 }) {
   const NavItemRef = useRef();

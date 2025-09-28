@@ -4,7 +4,7 @@ import { DebugPanel, GridGuide, LazyNavBackdrop } from "@pixel/components/Contro
 import { Environment } from "@pixel/components/Environment";
 import { Cube3dLoader } from "@pixel/components/Loaders";
 import useGameStateManager, { GameStates } from "@pixel/state/game-store";
-import { getConfig } from "@/config/runtime";
+import { getConfig } from "@shared/config/runtime";
 
 export default function App() {
   const { isDebug } = getConfig();

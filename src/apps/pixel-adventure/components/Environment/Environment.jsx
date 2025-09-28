@@ -7,7 +7,7 @@ import { useCameraAnimation } from "@pixel/hooks";
 import useGameStateManager, { GameStates } from "@pixel/state/game-store.js";
 import { Zones } from "@pixel/utils/zones.js";
 import { Sun } from "./Celestials";
-import Terrain from "./Terrain";
+import PixelMap from "./Maps";
 
 // Shader for background gradient
 const DUAL_GRADIENT = {
@@ -94,7 +94,7 @@ export default function Environment() {
         minDistance={2}
         maxPolarAngle={Math.PI / 2}
       />
-      <Terrain scene={scene} />
+      <PixelMap scene={scene} />
       <Avatar />
     </>
   );
