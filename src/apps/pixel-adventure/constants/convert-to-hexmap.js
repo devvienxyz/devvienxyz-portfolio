@@ -67,3 +67,4 @@ const HexMap = convert(NormalizedTerrainObjects);
 
 // write to file
 console.log(JSON.stringify(HexMap, null, 2));
+// node convert-to-hexmap.js > maps/hex-map.json
