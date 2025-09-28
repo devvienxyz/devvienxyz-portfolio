@@ -2,6 +2,7 @@ import { useFrame, useThree } from "@react-three/fiber";
 import { useState, useEffect, useRef } from "react";
 import { AnimationMixer } from "three";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
+import Clickable3DObject from "./Clickable-3d-Object";
 
 // helper: axial to world space conversion for hex tiles
 // adjust size based on your hex tile dimensions
