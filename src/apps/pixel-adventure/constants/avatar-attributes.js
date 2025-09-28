@@ -1,5 +1,7 @@
 const Avatars = Object.freeze({
   default: "character-female-e",
+  fem_a: "character-female-a",
+  mal_a: "character-male-a",
   // TODO: Add more avatars
 });
 
