@@ -14,8 +14,6 @@ export default function BaseClickable({ onClick, position }) {
       onClick={onClick}
       onKeyDown={handleKeyDown}
       position={position}
-    >
-      BaseClickable
-    </mesh>
+    ></mesh>
   );
 }
