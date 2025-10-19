@@ -1,3 +1,5 @@
+import { OnHoverZoneActions, OnEnterZoneActions } from "./zone-actions";
+
 export const NormalizedTerrainObjects = [
   {
     name: "unit-tree",
@@ -133,6 +135,9 @@ export const NormalizedTerrainObjects = [
   {
     name: "stone-mountain",
     position: [3, 0, -1.9],
+    zone: "WORK",
+    onHover: OnHoverZoneActions.SHOW_WORK_BANNER,
+    onEnter: OnEnterZoneActions.SHOW_WORK_2D_MAP,
   },
   {
     name: "building-cabin",
@@ -146,6 +151,9 @@ export const NormalizedTerrainObjects = [
     name: "building-port",
     position: [-2.5, 0, 0.7],
     rotationY: 90,
+    zone: "ABOUT",
+    onHover: OnHoverZoneActions.SHOW_ABOUT_BANNER,
+    onEnter: OnEnterZoneActions.SHOW_ABOUT_2D_MAP,
   },
   {
     name: "building-market",
@@ -171,11 +179,17 @@ export const NormalizedTerrainObjects = [
   {
     name: "building-castle",
     position: [3, 0, 1.7],
+    zone: "PROJECTS",
+    onHover: OnHoverZoneActions.SHOW_PROJECTS_BANNER,
+    onEnter: OnEnterZoneActions.SHOW_PROJECTS_2D_MAP,
   },
   {
     name: "building-wizard-tower",
     position: [3, 0, 2.9],
     rotationY: 0,
+    zone: "CREDITS",
+    onHover: OnHoverZoneActions.SHOW_CREDITS_BANNER,
+    onEnter: OnEnterZoneActions.SHOW_CREDITS_2D_MAP,
   },
   {
     name: "unit-mill",
