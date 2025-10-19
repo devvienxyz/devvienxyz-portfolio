@@ -7,6 +7,7 @@ import BaseClickable from "./Base-Clickable";
 export default function HexTile({ tile, scene, modelPathPrefix, mixers }) {
   const loader = useRef(new GLTFLoader());
   const [model, setModel] = useState(null);
+  const [isInside, setIsInside] = useState(false);
   const avatarPosition = useAvatarStore((s) => s.position);
 
   useEffect(() => {
@@ -45,24 +46,36 @@ export default function HexTile({ tile, scene, modelPathPrefix, mixers }) {
     const dx = avatarPosition.x - x;
     const dz = avatarPosition.z - z;
     const distSq = dx * dx + dz * dz;
-    const isInside = distSq < radius * radius;
+    const nowInside = distSq < radius * radius;
 
+    // Only trigger when state changes
+    if (nowInside !== isInside) {
+      setIsInside(nowInside);
+
+      if (nowInside) {
+        tile.onEnter?.(tile);
+      } else {
+        tile.onExit?.(tile);
+      }
+    }
+
+    // Update visual glow
     model.traverse((child) => {
       if (child.isMesh && child.material) {
-        if (isInside) {
-          child.material.emissive?.setHex(0xffff00); // yellow glow
-          child.material.emissiveIntensity = 1.0;
-        } else {
-          child.material.emissive?.setHex(0x000000);
-          child.material.emissiveIntensity = 0.0;
-        }
+        child.material.emissive?.setHex(nowInside ? 0xffff00 : 0x000000);
+        child.material.emissiveIntensity = nowInside ? 1.0 : 0.0;
       }
     });
-  }, [model, tile, avatarPosition]); // reacts whenever avatar moves
+  }, [model, tile, avatarPosition]);
 
   return model ? (
-    <>
-      <BaseClickable object={model} onClick={tile.onClick} position={tile.position} />
-    </>
+    <BaseClickable
+      object={model}
+      position={tile.position}
+      onClick={(e) => {
+        e.stopPropagation?.();
+        tile.onClick?.(tile);
+      }}
+    />
   ) : null;
 }
