@@ -40,7 +40,7 @@ export default function HexTile({ tile, scene, modelPathPrefix, mixers }) {
     if (!model) return;
     if (!avatarPosition) return;
     const [x, , z] = tile.position;
-    const radius = tile.size || 1;
+    const radius = 0.5;
 
     const dx = avatarPosition.x - x;
     const dz = avatarPosition.z - z;
